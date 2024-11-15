@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Landing page
@@ -34,4 +33,6 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Dashboard Route
-Route::middleware('auth')->get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings');
+Route::post('/admin/bookings/{id}/status', [AdminBookingController::class, 'updateStatus'])->name('admin.bookings.update.status');
+

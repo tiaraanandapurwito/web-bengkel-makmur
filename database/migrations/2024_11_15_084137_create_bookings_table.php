@@ -10,6 +10,7 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Menambahkan kolom user_id
             $table->string('vehicle_type');
             $table->dateTime('service_date');
             $table->text('details')->nullable();
@@ -19,8 +20,9 @@ class CreateBookingsTable extends Migration
     }
 
     public function down()
-    {
-        Schema::dropIfExists('bookings');
-    }
+{
+    Schema::table('bookings', function (Blueprint $table) {
+        $table->dropColumn('user_id'); // Menghapus kolom user_id
+    });
 }
-
+}

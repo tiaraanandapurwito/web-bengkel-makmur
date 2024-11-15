@@ -13,33 +13,64 @@
         </div>
     @else
         <div class="booking-list">
-            @foreach($bookings as $booking)
-                <div class="booking-item" id="bookingItem_{{ $booking->id }}">
-                    <div class="booking-status
-                        @if($booking->status === 'pending') status-pending
-                        @elseif($booking->status === 'confirmed') status-confirmed
-                        @elseif($booking->status === 'completed') status-completed
-                        @endif">
-                    </div>
-                    <div class="booking-content">
-                        <h4 class="vehicle-type">{{ $booking->vehicle_type }}</h4>
-                        <div class="booking-details">
-                            <div class="detail-item">
-                                <i class="far fa-calendar"></i>
-                                {{ \Carbon\Carbon::parse($booking->service_date)->format('d M Y') }}
-                            </div>
-                            <div class="detail-item">
-                                <i class="far fa-clock"></i>
-                                {{ \Carbon\Carbon::parse($booking->service_date)->format('H:i') }}
-                            </div>
-                        </div>
-                        @if($booking->details)
-                            <p class="booking-notes">{{ $booking->details }}</p>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>No</th>  <!-- Angka Pesanan -->
+                        <th>Jenis Kendaraan</th>
+                        <th>Tanggal Servis</th>
+                        <th>Waktu Servis</th>
+                        <th>Detail</th>
+                        <th>Status</th>
+                        @can('admin') <!-- Pengecekan hak akses admin -->
+                            <th>Aksi</th> <!-- Kolom aksi untuk admin -->
+                        @endcan
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($bookings as $index => $booking)
+                        <tr id="bookingItem_{{ $booking->id }}">
+                            <td>{{ $index + 1 }}</td>  <!-- Menampilkan nomor urut -->
+                            <td>{{ $booking->vehicle_type }}</td>
+                            <td>{{ \Carbon\Carbon::parse($booking->service_date)->format('d M Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($booking->service_date)->format('H:i') }}</td>
+                            <td>
+                                @if($booking->details)
+                                    {{ $booking->details }}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
+                                <span class="badge
+                                    @if($booking->status === 'pending') bg-warning
+                                    @elseif($booking->status === 'confirmed') bg-success
+                                    @elseif($booking->status === 'completed') bg-primary
+                                    @endif">
+                                    {{ ucfirst($booking->status) }}
+                                </span>
+                            </td>
+                            @can('admin') <!-- Hanya admin yang dapat melihat tombol aksi -->
+                                <td>
+                                    @if($booking->status === 'pending')
+                                        <form action="{{ route('admin.updateBookingStatus', $booking->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-success">Terima Pemesanan</button>
+                                        </form>
+                                    @elseif($booking->status === 'confirmed')
+                                        <form action="{{ route('admin.updateBookingStatus', $booking->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-primary">Tandai Selesai</button>
+                                        </form>
+                                    @endif
+                                </td>
+                            @endcan
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     @endif
-</div>
 @endsection

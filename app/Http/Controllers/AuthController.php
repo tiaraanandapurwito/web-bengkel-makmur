@@ -26,7 +26,7 @@ class AuthController extends Controller
             if (auth()->user()->isAdmin) {
 
                 // dd('admin.welcome');
-                return redirect()->route('admin.index');
+                return redirect('/admin/bookings');
             } else {
                 return redirect()->route('dashboard');
             }

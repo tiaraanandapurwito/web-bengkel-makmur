@@ -285,11 +285,6 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fas fa-cog"></i>Settings
-                                        </a>
-                                    </li>
-                                    <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
@@ -334,19 +329,23 @@
                 </div>
             </div>
             <ul class="nav-menu">
+                @if (auth()->user()->isAdmin)
+                <li class="nav-menu-item">
+                    <a href="{{ route('admin.bookings') }}" class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
+                        <i class="fas fa-list-alt"></i>
+                        <span>Pemesanan</span>
+                    </a>
+                </li>
+                @else
                 <li class="nav-menu-item">
                     <a href="{{ route('dashboard') }}" class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
-                    <a href="{{ route('pemesanan') }}"
-                        class="nav-menu-link {{ Request::is('pemesanan') ? 'active' : '' }}">
-                        <i class="fas fa-calendar-check"></i> <!-- You can replace this icon with one of your choice -->
-                        <span>Pemesanan</span>
-                    </a>
                 </li>
             </ul>
         </div>
+        @endif
     @endauth
 
     <!-- Content Area -->

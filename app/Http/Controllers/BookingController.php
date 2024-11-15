@@ -14,7 +14,7 @@ class BookingController extends Controller
     }
 
     // Store the booking data
-        public function store(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'vehicle_type' => 'required|string',
@@ -22,14 +22,25 @@ class BookingController extends Controller
             'details' => 'nullable|string',
         ]);
 
+        // Menyimpan pemesanan dan menyertakan user_id
         $booking = Booking::create([
+            'user_id' => auth()->id(), // Menyertakan ID pengguna yang sedang login
             'vehicle_type' => $validated['vehicle_type'],
             'service_date' => $validated['service_date'],
             'details' => $validated['details'],
-            'status' => 'pending', // Default status is 'pending'
+            'status' => 'pending',
         ]);
 
-        return redirect()->route('pemesanan')->with('success', 'Titik lokasi berhasil ditambahkan!');
+        // Jika permintaan adalah AJAX
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Pemesanan berhasil dibuat!',
+            ]);
+        }
+
+        // Jika bukan AJAX, redirect ke halaman pemesanan
+        return redirect()->route('pemesanan')->with('success', 'Pesanan Telah Ditambahkan!');
     }
 
     // Show all bookings
