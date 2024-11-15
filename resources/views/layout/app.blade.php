@@ -18,7 +18,6 @@
             --bg-white: #ffffff;
             --sidebar-width: 250px;
             --navbar-height: 70px;
-            /* Set the navbar height */
         }
 
         body {
@@ -26,22 +25,17 @@
             background-color: var(--bg-light);
             color: var(--text-primary);
             margin-top: var(--navbar-height);
-            /* Adjust body margin to prevent content from being hidden behind navbar */
         }
 
-        /* Navbar Styling */
         .navbar {
-            background-color: var(--bg-white) !important;
+            background-color: var(--bg-white);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
             padding: 1rem 1.5rem;
             position: fixed;
-            /* Make navbar fixed */
             top: 0;
-            /* Align it to the top */
             left: 0;
             width: 100%;
             z-index: 1000;
-            /* Ensure it's above other elements */
         }
 
         .navbar-brand {
@@ -74,21 +68,17 @@
             background-color: rgba(67, 97, 238, 0.1);
         }
 
-        /* Sidebar Styling */
         .sidebar {
             background-color: var(--bg-white);
             width: var(--sidebar-width);
             height: calc(100vh - var(--navbar-height));
-            /* Adjust height to start below the navbar */
             position: fixed;
             left: 0;
             top: var(--navbar-height);
-            /* Set top position below the navbar */
             padding: 1.5rem;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             z-index: 999;
-            /* Ensure sidebar stays on top of content */
         }
 
         .sidebar-header {
@@ -170,7 +160,6 @@
             text-align: center;
         }
 
-        /* Content Area Styling */
         .main-content {
             margin-left: var(--sidebar-width);
             padding: 2rem;
@@ -181,7 +170,6 @@
             max-width: 1200px;
         }
 
-        /* Responsive Styling */
         @media (max-width: 992px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -196,11 +184,9 @@
                 margin-left: 0;
                 padding: 1rem;
                 padding-top: 3rem;
-                /* Adjust padding for mobile */
             }
         }
 
-        /* User Dropdown Styling */
         .user-dropdown {
             position: relative;
         }
@@ -232,7 +218,6 @@
             text-align: center;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -254,7 +239,6 @@
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <button class="btn d-lg-none" type="button" onclick="toggleSidebar()">
@@ -284,12 +268,10 @@
                                             <i class="fas fa-user"></i>Profile
                                         </a>
                                     </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="fas fa-sign-out-alt"></i>Logout
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -306,7 +288,6 @@
     </nav>
 
     @auth
-        <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-user">
@@ -318,37 +299,27 @@
                         <div class="date-display">
                             {{ \Carbon\Carbon::now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
                         </div>
-                        <style>
-                            .date-display {
-                                color: #000000;
-                                font-size: 15px;
-                                /* Smaller font size */
-                            }
-                        </style>
                     </div>
                 </div>
             </div>
             <ul class="nav-menu">
-                <li class="nav-menu-item">
-                    <a href="{{ route('admin.bookings') }}"
-                        class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
-                        <i class="fas fa-list-alt"></i>
-                        <span>Pemesanan</span>
-                    </a>
-                </li>
-                <li class="nav-menu-item">
-                        <a href="{{ route('dashboard') }}"
-                            class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
-                            <i class="fas fa-home"></i>
-                            <span>Dashboard</span>
+                @if (auth()->user()->isAdmin)
+                    <li class="nav-menu-item">
+                        <a href="{{ route('admin.bookings') }}" class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
+                            <i class="fas fa-list-alt"></i> <span>Pemesanan</span>
                         </a>
-                </li>
-
+                    </li>
+                @else
+                    <li class="nav-menu-item">
+                        <a href="{{ route('dashboard') }}" class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                            <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     @endauth
 
-    <!-- Content Area -->
     <div class="main-content">
         @yield('content')
     </div>
@@ -360,7 +331,6 @@
             sidebar.classList.toggle('show');
         }
 
-        // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(event) {
             const sidebar = document.getElementById('sidebar');
             const toggleBtn = document.querySelector('.btn');
@@ -372,6 +342,7 @@
             }
         });
     </script>
+
     @yield('scripts')
 </body>
 

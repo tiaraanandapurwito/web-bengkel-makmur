@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 
 class AdminBookingController extends Controller
 {
-    // Menampilkan daftar pemesanan
     public function index(Request $request)
     {
-        $bookings = Booking::all();
-        return view('admin.index',[
+        $bookings = Booking::all(); // Anda bisa menambahkan filter atau pagination jika data banyak
+        return view('admin.index', [
             'bookings' => $bookings
         ]);
     }
@@ -19,14 +18,29 @@ class AdminBookingController extends Controller
     // Mengupdate status pemesanan
     public function updateStatus(Request $request, $id)
     {
+        // Validasi status yang dikirimkan
         $request->validate([
-            'status' => 'required|in:pending,confirmed,completed',
+            'status' => 'required|in:pending,confirmed,completed', // Validasi status
         ]);
 
-        $booking = Booking::findOrFail($id);
-        $booking->status = $request->status;
-        $booking->save();
+        try {
+            // Cari booking berdasarkan ID
+            $booking = Booking::findOrFail($id);
 
-        return response()->json(['success' => true, 'message' => 'Status berhasil diperbarui']);
+            // Update status
+            $booking->status = $request->status;
+            $booking->save();
+
+            return response()->json([
+                'success' => true, 
+                'message' => 'Status berhasil diperbarui'
+            ]);
+        } catch (\Exception $e) {
+            // Tangani jika terjadi kesalahan
+            return response()->json([
+                'success' => false, 
+                'message' => 'Terjadi kesalahan saat memperbarui status. Silakan coba lagi.'
+            ], 500);
+        }
     }
 }
