@@ -329,23 +329,23 @@
                 </div>
             </div>
             <ul class="nav-menu">
-                @if (auth()->user()->isAdmin)
                 <li class="nav-menu-item">
-                    <a href="{{ route('admin.bookings') }}" class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
+                    <a href="{{ route('admin.bookings') }}"
+                        class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
                         <i class="fas fa-list-alt"></i>
                         <span>Pemesanan</span>
                     </a>
                 </li>
-                @else
                 <li class="nav-menu-item">
-                    <a href="{{ route('dashboard') }}" class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
                 </li>
+
             </ul>
         </div>
-        @endif
     @endauth
 
     <!-- Content Area -->

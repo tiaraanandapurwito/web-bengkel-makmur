@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Kelola Pemesanan Servis Kendaraan')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,8 +11,8 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-light">
                 <tr>
                     <th>No</th>
                     <th>Nama User</th>
@@ -22,13 +24,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($bookings as $index => $booking)
+                @forelse($bookings as $index => $booking)
                 <tr id="bookingRow_{{ $booking->id }}">
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $booking->user->name ?? 'Data tidak tersedia' }}</td>
-                    <td>{{ $booking->vehicle_type ?? 'Data tidak tersedia' }}</td>
-                    <td>{{ \Carbon\Carbon::parse($booking->service_date)->format('d M Y') ?? 'Data tidak tersedia' }}</td>
-                    <td>{{ $booking->details ?? 'Data tidak tersedia' }}</td>
+                    <td>{{ $booking->user->name ?? 'Tidak tersedia' }}</td>
+                    <td>{{ $booking->vehicle_type ?? 'Tidak tersedia' }}</td>
+                    <td>{{ \Carbon\Carbon::parse($booking->service_date)->isoFormat('D MMMM YYYY') }}</td>
+                    <td>{{ $booking->details ?? '-' }}</td>
                     <td>
                         <span class="badge
                             @if($booking->status === 'pending') bg-warning
@@ -36,7 +38,7 @@
                             @elseif($booking->status === 'completed') bg-primary
                             @else bg-secondary
                             @endif">
-                            {{ ucfirst($booking->status ?? 'Data tidak tersedia') }}
+                            {{ ucfirst($booking->status) }}
                         </span>
                     </td>
                     <td>
@@ -47,7 +49,11 @@
                         </button>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="7" class="text-center">Tidak ada data pemesanan servis.</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -71,7 +77,7 @@
                                 <option value="completed">Completed</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
                     </form>
                 </div>
             </div>
@@ -82,14 +88,15 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', () => {
         const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
         const statusForm = document.getElementById('statusForm');
 
+        // Handle change status button click
         document.querySelectorAll('.btn-change-status').forEach(button => {
-            button.addEventListener('click', function () {
-                const bookingId = this.dataset.id;
-                const currentStatus = this.dataset.status;
+            button.addEventListener('click', () => {
+                const bookingId = button.dataset.id;
+                const currentStatus = button.dataset.status;
 
                 document.getElementById('bookingId').value = bookingId;
                 document.getElementById('newStatus').value = currentStatus;
@@ -98,7 +105,8 @@
             });
         });
 
-        statusForm.addEventListener('submit', function (e) {
+        // Handle status form submission
+        statusForm.addEventListener('submit', e => {
             e.preventDefault();
 
             const bookingId = document.getElementById('bookingId').value;
@@ -123,8 +131,11 @@
                     }`;
                     badge.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
                     statusModal.hide();
+                } else {
+                    alert('Gagal memperbarui status.');
                 }
-            });
+            })
+            .catch(() => alert('Terjadi kesalahan.'));
         });
     });
 </script>
