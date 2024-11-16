@@ -72,7 +72,20 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::all(); // Fetch all bookings
-        return view('pemesanan', compact('bookings'));
+        $bookings = Booking::where('status', '!=', 'completed') // Hanya booking yang belum selesai
+            ->orderBy('service_date', 'asc')
+            ->get();
+
+        // Tambahkan nomor antrian ke setiap booking
+        $bookings = $bookings->map(function ($booking, $index) {
+            $booking->queue_number = $index + 1;
+            return $booking;
+        });
+
+        // Cari antrian saat ini (berdasarkan waktu sekarang)
+        $currentQueue = $bookings->firstWhere('service_date', '>=', now()) ?? null;
+
+        return view('pemesanan', compact('bookings', 'currentQueue'));
     }
 
     public function bookingHistory()
