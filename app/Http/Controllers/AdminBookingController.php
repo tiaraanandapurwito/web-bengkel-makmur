@@ -8,39 +8,46 @@ use Illuminate\Http\Request;
 class AdminBookingController extends Controller
 {
     public function index(Request $request)
-    {
-        $bookings = Booking::all(); // Anda bisa menambahkan filter atau pagination jika data banyak
-        return view('admin.index', [
-            'bookings' => $bookings
-        ]);
-    }
+{
+    // Ambil data dengan filter status selain 'completed' dan gunakan eager loading
+    $bookings = Booking::where('status', '!=', 'completed')
+                        ->with('user') // Mengambil data user untuk menghindari query N+1
+                        ->paginate(10); // Gunakan pagination (10 data per halaman)
+
+    return view('admin.index', [
+        'bookings' => $bookings
+    ]);
+}
 
     // Mengupdate status pemesanan
-    public function updateStatus(Request $request, $id)
+    public function updateStatus(Request $request)
     {
-        // Validasi status yang dikirimkan
         $request->validate([
-            'status' => 'required|in:pending,confirmed,completed', // Validasi status
+            'bookingId' => 'required|exists:bookings,id',
+            'newStatus' => 'required|in:pending,confirmed,completed',
         ]);
 
-        try {
-            // Cari booking berdasarkan ID
-            $booking = Booking::findOrFail($id);
+        $booking = Booking::find($request->bookingId);
+        $booking->status = $request->newStatus;
 
-            // Update status
-            $booking->status = $request->status;
-            $booking->save();
-
-            return response()->json([
-                'success' => true, 
-                'message' => 'Status berhasil diperbarui'
-            ]);
-        } catch (\Exception $e) {
-            // Tangani jika terjadi kesalahan
-            return response()->json([
-                'success' => false, 
-                'message' => 'Terjadi kesalahan saat memperbarui status. Silakan coba lagi.'
-            ], 500);
+        // Jika status berubah menjadi completed, catat waktu penyelesaian
+        if ($request->newStatus === 'completed' && !$booking->completed_at) {
+            $booking->completed_at = now();
         }
+
+        $booking->save();
+
+        if ($request->newStatus === 'completed') {
+            return redirect()->route('admin.HistoryBooking')->with('success', 'Pesanan dipindahkan ke history.');
+        }
+
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+    }
+
+    public function history()
+    {
+        $completedBookings = Booking::where('status', 'completed')->orderBy('completed_at', 'desc')->get();
+
+        return view('admin.HistoryBooking', compact('completedBookings'));
     }
 }

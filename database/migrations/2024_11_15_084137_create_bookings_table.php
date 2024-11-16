@@ -15,14 +15,13 @@ class CreateBookingsTable extends Migration
             $table->dateTime('service_date');
             $table->text('details')->nullable();
             $table->enum('status', ['pending', 'confirmed', 'completed'])->default('pending');
+            $table->timestamp('completed_at')->nullable(); // Menambahkan kolom completed_at
             $table->timestamps();
         });
     }
 
     public function down()
-{
-    Schema::table('bookings', function (Blueprint $table) {
-        $table->dropColumn('user_id'); // Menghapus kolom user_id
-    });
-}
+    {
+        Schema::dropIfExists('bookings');
+    }
 }

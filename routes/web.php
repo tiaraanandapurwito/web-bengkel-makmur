@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Route;
 
 // Landing page
@@ -30,9 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookings', [BookingController::class, 'index'])->name('pemesanan');
     Route::get('/bookings/create', [BookingController::class, 'create'])->name('dashboard');
     Route::post('/bookings', [BookingController::class, 'store'])->name('user.booking.store');
+    Route::get('/booking/history', [BookingController::class, 'bookingHistory'])->name('historypemesanan');
 });
 
 // Admin Dashboard Route
 Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings');
-Route::post('/admin/bookings/{id}/status', [AdminBookingController::class, 'updateStatus'])->name('admin.bookings.update.status');
-
+Route::post('/admin/bookings/update-status', [AdminBookingController::class, 'updateStatus'])->name('bookings.update-status');
+Route::get('/admin/bookings/history', [AdminBookingController::class, 'history'])->name('admin.HistoryBooking');

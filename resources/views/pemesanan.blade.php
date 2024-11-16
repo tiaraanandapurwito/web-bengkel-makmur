@@ -7,9 +7,16 @@
         </div>
     </div>
 
-    @if($bookings->isEmpty())
+    @php
+        // Filter pemesanan yang statusnya bukan 'completed'
+        $filteredBookings = $bookings->filter(function ($booking) {
+            return $booking->status !== 'completed';
+        });
+    @endphp
+
+    @if($filteredBookings->isEmpty())
         <div class="alert alert-info" role="alert">
-            Belum ada pemesanan servis.
+            Tidak ada pemesanan servis yang tersedia.
         </div>
     @else
         <div class="booking-list">
@@ -22,13 +29,10 @@
                         <th>Waktu Servis</th>
                         <th>Detail</th>
                         <th>Status</th>
-                        @can('admin') <!-- Pengecekan hak akses admin -->
-                            <th>Aksi</th> <!-- Kolom aksi untuk admin -->
-                        @endcan
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($bookings as $index => $booking)
+                    @foreach($filteredBookings as $index => $booking)
                         <tr id="bookingItem_{{ $booking->id }}">
                             <td>{{ $index + 1 }}</td>  <!-- Menampilkan nomor urut -->
                             <td>{{ $booking->vehicle_type }}</td>

@@ -268,10 +268,12 @@
                                             <i class="fas fa-user"></i>Profile
                                         </a>
                                     </li>
-                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
                                     <li>
                                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class="fas fa-sign-out-alt"></i>Logout
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -305,14 +307,28 @@
             <ul class="nav-menu">
                 @if (auth()->user()->isAdmin)
                     <li class="nav-menu-item">
-                        <a href="{{ route('admin.bookings') }}" class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
+                        <a href="{{ route('admin.bookings') }}"
+                            class="nav-menu-link {{ Request::is('admin.bookings') ? 'active' : '' }}">
                             <i class="fas fa-list-alt"></i> <span>Pemesanan</span>
+                        </a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="{{ route('admin.HistoryBooking') }}"
+                            class="nav-menu-link {{ request()->routeIs('admin.HistoryBooking') ? 'active' : '' }}">
+                            <i class="fas fa-list-alt"></i> <span>HistoryBooking</span>
                         </a>
                     </li>
                 @else
                     <li class="nav-menu-item">
-                        <a href="{{ route('dashboard') }}" class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-menu-link {{ Request::is('dashboard') ? 'active' : '' }}">
                             <i class="fas fa-home"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="{{ route('historypemesanan') }}"
+                            class="nav-menu-link {{ Request::is('historypemesanan') ? 'active' : '' }}">
+                            <i class="fas fa-history"></i> <span>History</span>
                         </a>
                     </li>
                 @endif
