@@ -4,9 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengkel Motor Express - Solusi Perawatan Motor Terpercaya</title>
+    <title>Bengkel Makmur</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #3b82f6;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #2563eb;
+    }
+    </style>
+    @stack('style')
 </head>
 
 <body class="font-sans">
@@ -17,24 +37,24 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <i class="fas fa-tools text-2xl mr-2"></i>
-                    <a href="" class="font-bold text-xl">Bengkel Motor Express</a>
+                    <a href="#" class="font-bold text-xl">Bengkel Makmur</a>
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <div class="space-x-6">
-                        <a href="#beranda" class="hover:text-blue-200 transition duration-300">Beranda</a>
-                        <a href="#layanan" class="hover:text-blue-200 transition duration-300">Layanan</a>
-                        <a href="#tentang" class="hover:text-blue-200 transition duration-300">Tentang</a>
-                        <a href="#testimoni" class="hover:text-blue-200 transition duration-300">Testimoni</a>
-                        <a href="#kontak" class="hover:text-blue-200 transition duration-300">Kontak</a>
+                        <a href="#beranda" class="hover:text-gray-200 transition duration-300">Beranda</a>
+                        <a href="#layanan" class="hover:text-gray-200 transition duration-300">Layanan</a>
+                        <a href="#tentang" class="hover:text-gray-200 transition duration-300">Tentang</a>
+                        <a href="#testimoni" class="hover:text-gray-200 transition duration-300">Testimoni</a>
+                        <a href="#kontak" class="hover:text-gray-200 transition duration-300">Kontak</a>
                     </div>
                     <div class="hidden md:flex space-x-4">
                         <!-- Update these links to use the correct Laravel routes -->
                         <a href="{{ route('login') }}"
-                            class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition duration-300">Login</a>
+                            class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300">Login</a>
                         <a href="{{ route('register') }}"
-                            class="border border-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Daftar</a>
+                            class="border border-white px-4 py-2 rounded-lg hover:bg-gray   -700 transition duration-300">Daftar</a>
                     </div>
                 </div>
 
@@ -118,7 +138,7 @@
     </section>
 
     <!-- Services -->
-    <section class="py-20">
+    <section id="fitur" class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-12">Layanan Kami</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -436,5 +456,4 @@
         });
     </script>
 </body>
-
 </html>

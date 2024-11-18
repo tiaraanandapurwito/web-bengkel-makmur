@@ -164,7 +164,6 @@
             margin-left: var(--sidebar-width);
             padding: 2rem;
             min-height: calc(100vh - var(--navbar-height));
-            padding-top: var(--navbar-height);
             display: flex;
             flex-direction: column;
             max-width: 1200px;
@@ -183,7 +182,6 @@
             .main-content {
                 margin-left: 0;
                 padding: 1rem;
-                padding-top: 3rem;
             }
         }
 

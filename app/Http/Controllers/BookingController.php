@@ -53,7 +53,7 @@ class BookingController extends Controller
             return redirect()->route('pemesanan')->with('success', 'Pesanan telah ditambahkan!');
         } catch (\Exception $e) {
             // Log kesalahan untuk debugging
-            \Log::error('Error creating booking: ' . $e->getMessage());
+            \log::error('Error creating booking: ' . $e->getMessage());
 
             // Jika AJAX, berikan respons JSON dengan error
             if ($request->ajax()) {
@@ -70,23 +70,32 @@ class BookingController extends Controller
 
     // Show all bookings
     public function index()
-    {
-        $bookings = Booking::all(); // Fetch all bookings
-        $bookings = Booking::where('status', '!=', 'completed') // Hanya booking yang belum selesai
-            ->orderBy('service_date', 'asc')
-            ->get();
+{
+    $userId = auth()->id(); // Ambil ID user yang sedang login
 
-        // Tambahkan nomor antrian ke setiap booking
-        $bookings = $bookings->map(function ($booking, $index) {
-            $booking->queue_number = $index + 1;
-            return $booking;
-        });
+    // Ambil semua pemesanan user (belum selesai)
+    $userBookings = Booking::where('user_id', $userId)
+        ->where('status', '!=', 'completed')
+        ->orderBy('created_at', 'asc') // Urutkan berdasarkan waktu pemesanan
+        ->get();
 
-        // Cari antrian saat ini (berdasarkan waktu sekarang)
-        $currentQueue = $bookings->firstWhere('service_date', '>=', now()) ?? null;
+    // Ambil semua pemesanan yang sudah dikonfirmasi untuk antrean global
+    $confirmedBookings = Booking::where('status', '!=', 'completed')
+        ->orderBy('created_at', 'asc') // Urutkan berdasarkan waktu pemesanan
+        ->get();
 
-        return view('pemesanan', compact('bookings', 'currentQueue'));
-    }
+    // Tambahkan nomor antrian global ke setiap pemesanan
+    $confirmedBookings = $confirmedBookings->map(function ($booking, $index) {
+        $booking->queue_number = $index + 1; // Nomor antrian global
+        return $booking;
+    });
+
+    // Cari antrean yang sedang berlangsung
+    $currentQueue = $confirmedBookings->firstWhere('status', 'confirmed');
+
+    return view('pemesanan', compact('userBookings', 'confirmedBookings', 'currentQueue'));
+}
+
 
     public function bookingHistory()
     {
