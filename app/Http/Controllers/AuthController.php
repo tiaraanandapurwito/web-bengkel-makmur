@@ -33,12 +33,10 @@ class AuthController extends Controller
             // dd(auth()->user()->isAdmin);
         }
 
-
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
-
 
     public function showRegister()
     {

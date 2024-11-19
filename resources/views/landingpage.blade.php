@@ -9,33 +9,43 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
 
-    ::-webkit-scrollbar-thumb {
-        background: #3b82f6;
-        border-radius: 4px;
-    }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: #2563eb;
-    }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
 
-    section.bg-gradient-to-r {
-    background: linear-gradient(to right, rgba(72, 101, 128, 0.8), rgba(51, 86, 151, 0.8)),
-        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_FdIdOwQdfaAY1dIGsQmFDqqLYWb2aNIIKw&s');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    padding-bottom: 255px;
-    color: #fff;
-}
-</style>
+        section.bg-gradient-to-r {
+            background: linear-gradient(to right, rgba(72, 101, 128, 0.8), rgba(51, 86, 151, 0.8)),
+                url('https://www.mpmhondajatim.com/assets/uploads/files/blog_foto/1681291186_01gfjd3xmxdkx4gfskb306xfht.jpg');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            padding-bottom: 255px;
+            color: #fff;
+        }
+
+        #layanan.py-20 {
+            padding-top: 30px;
+            padding-bottom: 25px;
+        }
+
+        #fitur.py-20 {
+            padding-top: 30px;
+            padding-bottom: 10px;
+        }
+    </style>
     @stack('style')
 </head>
 
@@ -97,6 +107,7 @@
             </div>
         </nav>
     </header>
+
     <!-- Hero Section -->
     <section id="hero" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-20">
         <div class="container mx-auto px-6">
@@ -117,7 +128,7 @@
     </section>
 
     <!-- Features -->
-    <section id="layanan" class="py-20 bg-gray-50">
+    <section id="layanan" class="py-20 bg-white-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-12">Keunggulan Kami</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -185,7 +196,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section id="testimoni" class="py-20 bg-gray-50">
+    <section id="testimoni" class="py-20 bg-white-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-12">Apa Kata Mereka</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -466,4 +477,5 @@
         });
     </script>
 </body>
+
 </html>
