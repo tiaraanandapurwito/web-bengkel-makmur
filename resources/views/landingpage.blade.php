@@ -25,7 +25,17 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #2563eb;
     }
-    </style>
+
+    section.bg-gradient-to-r {
+    background: linear-gradient(to right, rgba(72, 101, 128, 0.8), rgba(51, 86, 151, 0.8)),
+        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_FdIdOwQdfaAY1dIGsQmFDqqLYWb2aNIIKw&s');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding-bottom: 255px;
+    color: #fff;
+}
+</style>
     @stack('style')
 </head>
 
@@ -88,7 +98,7 @@
         </nav>
     </header>
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-20">
+    <section id="hero" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-20">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 text-center md:text-left">
