@@ -12,6 +12,8 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Menambahkan kolom user_id
             $table->string('vehicle_type');
+            $table->foreignId('service_id')->constrained('services');
+            // $table->decimal('price', 10, 2);
             $table->dateTime('service_date');
             $table->text('details')->nullable();
             $table->enum('status', ['pending', 'confirmed', 'completed'])->default('pending');

@@ -17,6 +17,8 @@
                         <th>No</th>
                         <th>Nama User</th>
                         <th>Jenis Kendaraan</th>
+                        <th>Layanan</th>
+                        <th>Harga</th>
                         <th>Tanggal Servis</th>
                         <th>Catatan</th>
                         <th>Status</th>
@@ -29,13 +31,18 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $booking->user->name ?? 'Tidak tersedia' }}</td>
                             <td>{{ $booking->vehicle_type ?? 'Tidak tersedia' }}</td>
+                            <td>{{ $booking->service->service_name ?? '-' }}</td>
+                            <td>
+                                {{ isset($booking->service->price) ? 'Rp' . number_format($booking->service->price, 0, ',', '.') : '-' }}
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($booking->service_date)->isoFormat('D MMMM YYYY') }}</td>
                             <td>{{ $booking->details ?? '-' }}</td>
                             <td>
                                 <span
                                     class="badge
                             @if ($booking->status === 'pending') bg-warning
-                            @elseif($booking->status === 'confirmed') bg-success @endif">
+                            @elseif($booking->status === 'confirmed') bg-success
+                            @elseif($booking->status === 'completed') bg-secondary @endif">
                                     {{ ucfirst($booking->status) }}
                                 </span>
                             </td>
@@ -49,7 +56,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center">Tidak ada data pemesanan aktif.</td>
+                            <td colspan="9" class="text-center">Tidak ada data pemesanan aktif.</td>
                         </tr>
                     @endforelse
                 </tbody>

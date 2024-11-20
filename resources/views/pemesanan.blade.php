@@ -55,6 +55,8 @@
                                 <tr>
                                     <th scope="col" class="text-center">No</th>
                                     <th scope="col">Jenis Kendaraan</th>
+                                    <th scope="col">Layanan</th>
+                                    <th scope="col">Harga</th>
                                     <th scope="col">Tanggal Servis</th>
                                     <th scope="col" class="text-center">Status</th>
                                     <th scope="col" class="text-center">Antrian</th>
@@ -82,6 +84,8 @@
                                             <i class="fas {{ $vehicleIcon }} me-2 text-secondary"></i>
                                             {{ $booking->vehicle_type }}
                                         </td>
+                                        <td>{{ $booking->service->service_name ?? '-' }}</td>
+                                        <td>{{ isset($booking->service->price) ? 'Rp' . number_format($booking->service->price, 0, ',', '.') : '-' }}</td>
                                         <td>
                                             <i class="far fa-calendar-alt me-2 text-secondary"></i>
                                             {{ \Carbon\Carbon::parse($booking->service_date)->format('d M Y H:i') }}

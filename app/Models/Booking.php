@@ -14,9 +14,11 @@ class Booking extends Model
     protected $fillable = [
         'user_id',
         'vehicle_type',
+        'service_id',
         'service_date',
         'details',
         'status',
+        // 'price',
         'completed_at',
     ];
 
@@ -49,4 +51,10 @@ class Booking extends Model
     {
         return $this->service_date ? Carbon::parse($this->service_date)->isoFormat('D MMMM YYYY') : null;
     }
+
+    public function service()
+{
+    return $this->belongsTo(Service::class, 'service_id');
+}
+
 }

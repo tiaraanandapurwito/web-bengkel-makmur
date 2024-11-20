@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminBookingController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Models\Booking;
@@ -32,9 +33,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookings/create', [BookingController::class, 'create'])->name('dashboard');
     Route::post('/bookings', [BookingController::class, 'store'])->name('user.booking.store');
     Route::get('/booking/history', [BookingController::class, 'bookingHistory'])->name('historypemesanan');
+    Route::get('/get-services', [BookingController::class, 'getServices'])->name('services.get');
 });
 
 // Admin Dashboard Route
 Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings');
 Route::post('/admin/bookings/update-status', [AdminBookingController::class, 'updateStatus'])->name('bookings.update-status');
 Route::get('/admin/bookings/history', [AdminBookingController::class, 'history'])->name('admin.HistoryBooking');
+Route::get('/get-services-by-vehicle-type', [BookingController::class, 'getServicesByVehicleType'])->name('services.getByVehicleType');
+
+// Menampilkan daftar layanan servis
+Route::get('/services', [ServiceController::class, 'index'])->name('admin.servis');
+Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+Route::put('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
+Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
+
