@@ -245,7 +245,7 @@
             </button>
             <a class="navbar-brand" href="#">
                 <i class="fas fa-tools"></i>
-                Servis Kendaraan
+                BengkelTelkom
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
@@ -308,20 +308,20 @@
                     <li class="nav-menu-item">
                         <a href="{{ route('admin.bookings') }}"
                             class="nav-menu-link {{ Request::routeIs('admin.bookings') ? 'active' : '' }}">
-                            <i class="fas fa-list-alt"></i> <span>Pemesanan</span>
+                            <i class="fas fa-list-alt"></i> <span>List Pemesanan</span>
                         </a>
                     </li>
                     <li class="nav-menu-item">
                         <a href="{{ route('admin.servis') }}"
                             class="nav-menu-link {{ Request::routeIs('admin.servis') ? 'active' : '' }}">
                             <i class="fas fa-tools"></i>
-                            <span>tambah layanan</span>
+                            <span>Tambah Layanan</span>
                         </a>
                     </li>
                     <li class="nav-menu-item">
                         <a href="{{ route('admin.HistoryBooking') }}"
                             class="nav-menu-link {{ request()->routeIs('admin.HistoryBooking') ? 'active' : '' }}">
-                            <i class="fas fa-list-alt"></i> <span>HistoryBooking</span>
+                            <i class="fas fa-list-alt"></i> <span>History Booking</span>
                         </a>
                     </li>
                 @else
@@ -367,5 +367,4 @@
 
     @yield('scripts')
 </body>
-
 </html>

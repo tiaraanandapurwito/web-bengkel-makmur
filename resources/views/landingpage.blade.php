@@ -4,48 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengkel Makmur</title>
+    <title>BengkelTelkom</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
-
-        section.bg-gradient-to-r {
-            background: linear-gradient(to right, rgba(72, 101, 128, 0.8), rgba(51, 86, 151, 0.8)),
-                url('https://www.mpmhondajatim.com/assets/uploads/files/blog_foto/1681291186_01gfjd3xmxdkx4gfskb306xfht.jpg');
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            padding-bottom: 255px;
-            color: #fff;
-        }
-
-        #layanan.py-20 {
-            padding-top: 30px;
-            padding-bottom: 25px;
-        }
-
-        #fitur.py-20 {
-            padding-top: 30px;
-            padding-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/page.css') }}">
     @stack('style')
 </head>
 
@@ -57,7 +19,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <i class="fas fa-tools text-2xl mr-2"></i>
-                    <a href="#" class="font-bold text-xl">Bengkel Makmur</a>
+                    <a href="#" class="font-bold text-xl">BengkelTelkom</a>
                 </div>
 
                 <!-- Desktop Menu -->
@@ -89,8 +51,8 @@
                 <!-- Ganti 'hidden' menjadi 'block' untuk menampilkan di perangkat kecil -->
                 <div class="flex flex-col space-y-3">
                     <a href="#beranda" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Beranda</a>
-                    <a href="#layanan" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Layanan</a>
                     <a href="#tentang" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Tentang</a>
+                    <a href="#layanan" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Layanan</a>
                     <a href="#testimoni"
                         class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Testimoni</a>
                     <a href="#kontak" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Kontak</a>
@@ -109,11 +71,11 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-20">
+    <section id="beranda" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-20">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Servis Motor Lebih Mudah dan Terpercaya</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Servis Kendaraan Lebih Mudah dan Terpercaya</h1>
                     <p class="text-xl mb-8">Nikmati kemudahan booking online dan layanan bengkel profesional dengan
                         teknisi berpengalaman</p>
                     <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
@@ -152,14 +114,14 @@
                         <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-2 text-center">Garansi Layanan</h3>
-                    <p class="text-gray-600 text-center">Jaminan kualitas dengan garansi servis hingga 30 hari</p>
+                    <p class="text-gray-600 text-center">Jaminan kualitas dengan garansi servis hingga 30 hari dan operasi</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services -->
-    <section id="fitur" class="py-20">
+    <section id="tentang" class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center mb-12">Layanan Kami</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -268,11 +230,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer id="kontak" class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">Bengkel Motor Express</h3>
+                    <h3 class="text-xl font-semibold mb-4">BengkelTelkom</h3>
                     <p class="text-gray-400">Solusi perawatan motor terpercaya dengan teknologi modern dan layanan
                         profesional.</p>
                 </div>
@@ -289,38 +251,38 @@
                     <h3 class="text-xl font-semibold mb-4">Kontak</h3>
                     <ul class="text-gray-400">
                         <li class="mb-2"><i class="fas fa-phone mr-2"></i> (021) 1234-5678</li>
-                        <li class="mb-2"><i class="fas fa-envelope mr-2"></i> info@bengkelmotor.com</li>
-                        <li class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Jl. Raya Motor No. 123, Jakarta
+                        <li class="mb-2"><i class="fas fa-envelope mr-2"></i> telkombengkelpku@gmail.com</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Jl. Esemka No.5, Simpang Baru, Kec. Tampan, Kota Pekanbaru, Riau
                         </li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Jam Operasional</h3>
                     <ul class="text-gray-400">
-                        <li class="mb-2">Senin - Jumat: 08:00 - 17:00</li>
-                        <li class="mb-2">Sabtu: 08:00 - 15:00</li>
-                        <li class="mb-2">Minggu: 09:00 - 13:00</li>
+                        <li class="mb-2">Senin - Jumat: 08:00 - 20:00</li>
+                        <li class="mb-2">Sabtu: 08:00 - 17:00</li>
+                        <li class="mb-2">Minggu: 09:00 - 15:00</li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <div class="text-gray-400 text-sm">
-                        © 2024 Bengkel Motor Express. All rights reserved.
+                        © 2024 BengkelTelkom. All rights reserved.
                     </div>
                     <div class="flex space-x-4 mt-4 md:mt-0">
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <a href="https://www.instagram.com/tiaraanandapurwito/" class="text-gray-400 hover:text-white transition duration-300">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <a href="https://www.instagram.com/tiaraanandapurwito/" class="text-gray-400 hover:text-white transition duration-300">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <a href="https://wa.me/6285363540354" class="text-gray-400 hover:text-white transition duration-300">
                             <i class="fab fa-whatsapp text-xl"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        {{-- <a href="#" class="text-gray-400 hover:text-white transition duration-300">
                             <i class="fab fa-youtube text-xl"></i>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -328,7 +290,7 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/6281234567890"
+    <a href="https://wa.me/6285363540354"
         class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
@@ -477,5 +439,4 @@
         });
     </script>
 </body>
-
 </html>
