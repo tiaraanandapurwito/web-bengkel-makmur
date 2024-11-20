@@ -19,7 +19,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <i class="fas fa-tools text-2xl mr-2"></i>
-                    <a href="#" class="font-bold text-xl">BengkelTelkom</a>
+                    <a href="#" class="font-bold text-xl">Bengkel Telkom</a>
                 </div>
 
                 <!-- Desktop Menu -->
@@ -234,7 +234,7 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">BengkelTelkom</h3>
+                    <h3 class="text-xl font-semibold mb-4">Bengkel Telkom</h3>
                     <p class="text-gray-400">Solusi perawatan motor terpercaya dengan teknologi modern dan layanan
                         profesional.</p>
                 </div>

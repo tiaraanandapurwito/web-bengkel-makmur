@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 class AdminBookingController extends Controller
 {
     public function index(Request $request)
-{
-    // Ambil data dengan filter status selain 'completed' dan gunakan eager loading
-    $bookings = Booking::where('status', '!=', 'completed')
-                        ->with('user') // Mengambil data user untuk menghindari query N+1
-                        ->paginate(10); // Gunakan pagination (10 data per halaman)
+    {
+        // Ambil data dengan filter status selain 'completed' dan urutkan berdasarkan service_date
+        $bookings = Booking::where('status', '!=', 'completed')
+            ->with('user') // Mengambil data user untuk menghindari query N+1
+            ->orderBy('service_date', 'asc') // Mengurutkan berdasarkan service_date
+            ->paginate(10); // Gunakan pagination (10 data per halaman)
 
-    return view('admin.index', [
-        'bookings' => $bookings
-    ]);
-}
+        return view('admin.index', [
+            'bookings' => $bookings
+        ]);
+    }
+
 
     // Mengupdate status pemesanan
     public function updateStatus(Request $request)

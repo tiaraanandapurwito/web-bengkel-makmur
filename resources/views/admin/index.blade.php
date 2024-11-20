@@ -40,9 +40,9 @@
                             <td>
                                 <span
                                     class="badge
-                            @if ($booking->status === 'pending') bg-warning
-                            @elseif($booking->status === 'confirmed') bg-success
-                            @elseif($booking->status === 'completed') bg-secondary @endif">
+                                    @if ($booking->status === 'pending') bg-warning
+                                    @elseif($booking->status === 'confirmed') bg-success
+                                    @elseif($booking->status === 'completed') bg-secondary @endif">
                                     {{ ucfirst($booking->status) }}
                                 </span>
                             </td>

@@ -20,8 +20,8 @@ class BookingController extends Controller
         $vehicleType = $request->vehicle_type;
 
         $services = Service::where('vehicle_type', $vehicleType)
-                          ->select('id', 'service_name', 'price')
-                          ->get();
+            ->select('id', 'service_name', 'price')
+            ->get();
 
         return response()->json($services);
     }
@@ -94,12 +94,12 @@ class BookingController extends Controller
         // Ambil semua pemesanan user (belum selesai)
         $userBookings = Booking::where('user_id', $userId)
             ->where('status', '!=', 'completed')
-            ->orderBy('created_at', 'asc') // Urutkan berdasarkan waktu pemesanan
+            ->orderBy('service_date', 'asc') // Urutkan berdasarkan tanggal layanan
             ->get();
 
         // Ambil semua pemesanan yang sudah dikonfirmasi untuk antrean global
         $confirmedBookings = Booking::where('status', '!=', 'completed')
-            ->orderBy('created_at', 'asc') // Urutkan berdasarkan waktu pemesanan
+            ->orderBy('service_date', 'asc') // Urutkan berdasarkan tanggal layanan
             ->get();
 
         // Tambahkan nomor antrian global ke setiap pemesanan
@@ -113,6 +113,7 @@ class BookingController extends Controller
 
         return view('pemesanan', compact('userBookings', 'confirmedBookings', 'currentQueue'));
     }
+
 
 
     public function bookingHistory()
