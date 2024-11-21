@@ -17,7 +17,7 @@
     background: #2563eb;
 }
 
-section.bg-gradient-to-r {
+/* section.bg-gradient-to-r {
     background: linear-gradient(to right, rgba(72, 101, 128, 0.8), rgba(51, 86, 151, 0.8)),
         url('https://www.mpmhondajatim.com/assets/uploads/files/blog_foto/1681291186_01gfjd3xmxdkx4gfskb306xfht.jpg');
     background-size: cover;
@@ -35,4 +35,4 @@ section.bg-gradient-to-r {
 #fitur.py-20 {
     padding-top: 30px;
     padding-bottom: 10px;
-}
+} */

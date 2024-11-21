@@ -1,357 +1,263 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BengkelTelkom</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Bengkel Telkom - Solusi Perawatan Kendaraan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/page.css') }}">
-    @stack('style')
+    <style>
+        :root {
+            --primary-blue: #1a4b8d;
+            --secondary-blue: #2c7bd9;
+            --light-blue: #e6f2ff;
+            --accent-color: #f39c12;
+        }
+
+        body {
+            font-family: 'Poppins', 'Arial', sans-serif;
+            color: var(--primary-blue);
+            background-color: #f4f7f9;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: rgba(26, 75, 141, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" opacity="0.1"%3E%3Cpattern id="pattern" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cpath d="M0 0 L100 0 L0 100 Z" fill="%23ffffff"%3E%3C/path%3E%3Cpath d="M100 0 L0 100 L100 100 Z" fill="%23ffffff"%3E%3C/path%3E%3C/pattern%3E%3Crect width="100%" height="100%" fill="url(%23pattern)"/%3E%3C/svg%3E');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            border: none;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .service-card .card-icon {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .features {
+            background-color: var(--light-blue);
+        }
+
+        .footer {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .transparent-image {
+            background: transparent;
+            mix-blend-mode: multiply;
+        }
+
+        /* Additional responsive adjustments */
+        @media (max-width: 768px) {
+            .hero, .footer {
+                text-align: center;
+            }
+            .hero-content {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
 </head>
-
-<body class="font-sans">
-    <!-- Header with functional navbar -->
-    <header class="bg-blue-600 text-white fixed w-full z-50">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <i class="fas fa-tools text-2xl mr-2"></i>
-                    <a href="#" class="font-bold text-xl">Bengkel Telkom</a>
-                </div>
-
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <div class="space-x-6">
-                        <a href="#beranda" class="hover:text-gray-200 transition duration-300">Beranda</a>
-                        <a href="#layanan" class="hover:text-gray-200 transition duration-300">Layanan</a>
-                        <a href="#tentang" class="hover:text-gray-200 transition duration-300">Tentang</a>
-                        <a href="#testimoni" class="hover:text-gray-200 transition duration-300">Testimoni</a>
-                        <a href="#kontak" class="hover:text-gray-200 transition duration-300">Kontak</a>
-                    </div>
-                    <div class="hidden md:flex space-x-4">
-                        <!-- Update these links to use the correct Laravel routes -->
-                        <a href="{{ route('login') }}"
-                            class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300">Login</a>
-                        <a href="{{ route('register') }}"
-                            class="border border-white px-4 py-2 rounded-lg hover:bg-gray   -700 transition duration-300">Daftar</a>
-                    </div>
-                </div>
-
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden block pt-4">
-                <!-- Ganti 'hidden' menjadi 'block' untuk menampilkan di perangkat kecil -->
-                <div class="flex flex-col space-y-3">
-                    <a href="#beranda" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Beranda</a>
-                    <a href="#tentang" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Tentang</a>
-                    <a href="#layanan" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Layanan</a>
-                    <a href="#testimoni"
-                        class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Testimoni</a>
-                    <a href="#kontak" class="hover:bg-blue-700 px-4 py-2 rounded transition duration-300">Kontak</a>
-                    <hr class="border-blue-400">
-                    <a href="{{ route('login') }}"
-                        class="flex items-center hover:bg-blue-700 px-4 py-2 rounded transition duration-300">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Login
-                    </a>
-                    <a href="{{ route('register') }}"
-                        class="flex items-center hover:bg-blue-700 px-4 py-2 rounded transition duration-300">
-                        <i class="fas fa-user-plus mr-2"></i>Register
-                    </a>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-tools me-2"></i> Bengkel Telkom
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#beranda">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                </ul>
+                <div class="ms-3">
+                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-light text-primary">Daftar</a>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="beranda" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Servis Kendaraan Lebih Mudah dan Terpercaya</h1>
-                    <p class="text-xl mb-8">Nikmati kemudahan booking online dan layanan bengkel profesional dengan
-                        teknisi berpengalaman</p>
-                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                        <a href="{{ route('login') }}"
-                            class="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-100 transition duration-300">
-                            Booking Sekarang
-                        </a>
-                    </div>
+    <section id="beranda" class="hero text-center text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4">Servis Kendaraan Profesional</h1>
+                    <p class="lead mb-4">Solusi terbaik untuk perawatan dan perbaikan kendaraan Anda</p>
+                    <a href="{{ route('login') }}" class="btn btn-primary-custom btn-lg">
+                        <i class="fas fa-tools me-2"></i> Booking Sekarang
+                    </a>
+                </div>
+                <div class="col-lg-6 hero-content">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400' preserveAspectRatio='xMidYMid meet'%3E%3Cstyle%3E.motorcycle{fill:%232c7bd9;fill-opacity:0.5;stroke:%231a4b8d;stroke-width:3;}&lt;/style%3E%3Cpath class='motorcycle' d='M200 250 C250 200, 350 200, 400 250 L450 300 Q400 350, 350 325 L300 275 Q250 250, 200 250 Z'/%3E%3Cpath class='motorcycle' d='M220 270 L180 220 Q150 190, 100 200 L50 230'/&gt;%3C/svg%gt;"
+                         alt="Motorcycle Repair"
+                         class="img-fluid rounded-4 shadow-lg transparent-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section id="layanan" class="py-20 bg-white-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">Keunggulan Kami</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-calendar-check text-2xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Booking Online</h3>
-                    <p class="text-gray-600 text-center">Reservasi jadwal servis dengan mudah melalui aplikasi atau
-                        website</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-user-tie text-2xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Teknisi Profesional</h3>
-                    <p class="text-gray-600 text-center">Tim teknisi berpengalaman dan tersertifikasi</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
-                    <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2 text-center">Garansi Layanan</h3>
-                    <p class="text-gray-600 text-center">Jaminan kualitas dengan garansi servis hingga 30 hari dan operasi</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="tentang" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">Layanan Kami</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition duration-300">
-                    <div class="text-blue-600 mb-4">
-                        <i class="fas fa-oil-can text-4xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Servis Rutin</h3>
-                    <p class="text-gray-600 text-sm">Perawatan berkala untuk performa optimal motor Anda</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition duration-300">
-                    <div class="text-blue-600 mb-4">
-                        <i class="fas fa-cog text-4xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Perbaikan Mesin</h3>
-                    <p class="text-gray-600 text-sm">Mengatasi masalah mesin dengan diagnosis akurat</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition duration-300">
-                    <div class="text-blue-600 mb-4">
-                        <i class="fas fa-spray-can text-4xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Cat & Body</h3>
-                    <p class="text-gray-600 text-sm">Perbaikan dan pengecatan body motor profesional</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition duration-300">
-                    <div class="text-blue-600 mb-4">
-                        <i class="fas fa-bolt text-4xl"></i>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-2">Sistem Kelistrikan</h3>
-                    <p class="text-gray-600 text-sm">Perbaikan dan perawatan sistem kelistrikan motor</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimoni" class="py-20 bg-white-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">Apa Kata Mereka</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="/api/placeholder/50/50" alt="Customer" class="rounded-full w-12 h-12">
-                        <div class="ml-4">
-                            <h4 class="font-semibold">Budi Santoso</h4>
-                            <div class="text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+    <!-- Layanan Section -->
+    <section id="layanan" class="py-5 features">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5">Layanan Kami</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card service-card p-4 text-center">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-oil-can fa-2x"></i>
                         </div>
+                        <h5 class="fw-semibold">Servis Rutin</h5>
+                        <p class="text-muted">Perawatan berkala untuk performa optimal</p>
                     </div>
-                    <p class="text-gray-600">"Pelayanan sangat professional dan cepat. Booking online memudahkan saya
-                        yang sibuk bekerja."</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="/api/placeholder/50/50" alt="Customer" class="rounded-full w-12 h-12">
-                        <div class="ml-4">
-                            <h4 class="font-semibold">Ani Wijaya</h4>
-                            <div class="text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
+                <div class="col-md-3">
+                    <div class="card service-card p-4 text-center">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-cog fa-2x"></i>
                         </div>
+                        <h5 class="fw-semibold">Perbaikan Mesin</h5>
+                        <p class="text-muted">Diagnosis akurat dan perbaikan profesional</p>
                     </div>
-                    <p class="text-gray-600">"Teknisi sangat ramah dan menjelaskan dengan detail setiap perbaikan yang
-                        dilakukan."</p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="/api/placeholder/50/50" alt="Customer" class="rounded-full w-12 h-12">
-                        <div class="ml-4">
-                            <h4 class="font-semibold">Rudi Hermawan</h4>
-                            <div class="text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                <div class="col-md-3">
+                    <div class="card service-card p-4 text-center">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-spray-can fa-2x"></i>
                         </div>
+                        <h5 class="fw-semibold">Cat & Body</h5>
+                        <p class="text-muted">Perbaikan dan pengecatan profesional</p>
                     </div>
-                    <p class="text-gray-600">"Hasil pengerjaan sangat memuaskan dan sesuai dengan estimasi waktu yang
-                        dijanjikan."</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="card service-card p-4 text-center">
+                        <div class="card-icon mb-3">
+                            <i class="fas fa-bolt fa-2x"></i>
+                        </div>
+                        <h5 class="fw-semibold">Sistem Kelistrikan</h5>
+                        <p class="text-muted">Perawatan sistem kelistrikan motor</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="bg-blue-600 text-white py-16">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-4">Siap untuk servis motor Anda?</h2>
-            <p class="text-xl mb-8">Dapatkan pengalaman servis motor terbaik dengan teknisi profesional kami</p>
-            <a href="#booking"
-                class="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-100 transition duration-300">
-                Booking Sekarang
-            </a>
+    <!-- Tentang Section -->
+    <section id="tentang" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400' preserveAspectRatio='xMidYMid meet'%3E%3Cstyle%3E.workshop{fill:%232c7bd9;fill-opacity:0.3;stroke:%231a4b8d;stroke-width:2;}&lt;/style%3E%3Crect x='50' y='50' width='500' height='300' class='workshop' rx='20'/&gt;%3Cpath d='M150 200 L250 200 L250 300 L150 300 Z' fill='%231a4b8d' fill-opacity='0.5'/&gt;%3Cpath d='M350 200 L450 200 L450 300 L350 300 Z' fill='%231a4b8d' fill-opacity='0.5'/&gt;%3C/svg%3E"
+                         alt="Bengkel Workshop"
+                         class="img-fluid rounded-4 shadow-lg transparent-image">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h2 class="fw-bold mb-4">Tentang Bengkel Telkom</h2>
+                    <p class="lead text-muted">
+                        Kami adalah bengkel profesional dengan teknisi berpengalaman yang siap memberikan layanan terbaik untuk kendaraan Anda.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Teknisi Berpengalaman</li>
+                        <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Peralatan Modern</li>
+                        <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Garansi Layanan</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-3">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="kontak" class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Bengkel Telkom</h3>
-                    <p class="text-gray-400">Solusi perawatan motor terpercaya dengan teknologi modern dan layanan
-                        profesional.</p>
+    <footer id="kontak" class="footer py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Bengkel Telkom</h5>
+                    <p>Solusi profesional untuk perawatan dan perbaikan kendaraan Anda</p>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Layanan</h3>
-                    <ul class="text-gray-400">
-                        <li class="mb-2">Servis Rutin</li>
-                        <li class="mb-2">Perbaikan Mesin</li>
-                        <li class="mb-2">Cat & Body</li>
-                        <li class="mb-2">Sistem Kelistrikan</li>
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Kontak Kami</h5>
+                    <p>
+                        <i class="fas fa-map-marker-alt me-2"></i> Jl. Esemka No.5, Pekanbaru<br>
+                        <i class="fas fa-phone me-2"></i> (021) 1234-5678<br>
+                        <i class="fas fa-envelope me-2"></i> info@bengkeltelkom.com
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li>Senin - Jumat: 08:00 - 20:00</li>
+                        <li>Sabtu: 08:00 - 17:00</li>
+                        <li>Minggu: 09:00 - 15:00</li>
                     </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Kontak</h3>
-                    <ul class="text-gray-400">
-                        <li class="mb-2"><i class="fas fa-phone mr-2"></i> (021) 1234-5678</li>
-                        <li class="mb-2"><i class="fas fa-envelope mr-2"></i> telkombengkelpku@gmail.com</li>
-                        <li class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Jl. Esemka No.5, Simpang Baru, Kec. Tampan, Kota Pekanbaru, Riau
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Jam Operasional</h3>
-                    <ul class="text-gray-400">
-                        <li class="mb-2">Senin - Jumat: 08:00 - 20:00</li>
-                        <li class="mb-2">Sabtu: 08:00 - 17:00</li>
-                        <li class="mb-2">Minggu: 09:00 - 15:00</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="text-gray-400 text-sm">
-                        © 2024 BengkelTelkom. All rights reserved.
-                    </div>
-                    <div class="flex space-x-4 mt-4 md:mt-0">
-                        <a href="https://www.instagram.com/tiaraanandapurwito/" class="text-gray-400 hover:text-white transition duration-300">
-                            <i class="fab fa-facebook-f text-xl"></i>
-                        </a>
-                        <a href="https://www.instagram.com/tiaraanandapurwito/" class="text-gray-400 hover:text-white transition duration-300">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="https://wa.me/6285363540354" class="text-gray-400 hover:text-white transition duration-300">
-                            <i class="fab fa-whatsapp text-xl"></i>
-                        </a>
-                        {{-- <a href="#" class="text-gray-400 hover:text-white transition duration-300">
-                            <i class="fab fa-youtube text-xl"></i>
-                        </a> --}}
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/6285363540354"
-        class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-
-    <!-- Booking Modal (Hidden by default) -->
-    <div id="bookingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold">Booking Servis</h3>
-                        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <form>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-gray-700 mb-2">Nama Lengkap</label>
-                                <input type="text"
-                                    class="w-full p-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Nomor WhatsApp</label>
-                                <input type="tel"
-                                    class="w-full p-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Jenis Motor</label>
-                                <input type="text"
-                                    class="w-full p-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Tanggal Servis</label>
-                                <input type="date"
-                                    class="w-full p-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Layanan</label>
-                                <select class="w-full p-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                                    <option value="">Pilih Layanan</option>
-                                    <option value="servis-rutin">Servis Rutin</option>
-                                    <option value="perbaikan-mesin">Perbaikan Mesin</option>
-                                    <option value="cat-body">Cat & Body</option>
-                                    <option value="kelistrikan">Sistem Kelistrikan</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Keluhan</label>
-                                <textarea class="w-full p-2 border rounded-lg focus:outline-none focus:border-blue-500" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-blue-600 text-white py-2 rounded-lg mt-6 hover:bg-blue-700 transition duration-300">
-                            Kirim Booking
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Simple JavaScript for Modal -->
     <script>
