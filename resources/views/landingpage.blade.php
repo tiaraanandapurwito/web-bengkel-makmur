@@ -6,17 +6,23 @@
     <title>Bengkel Telkom - Solusi Perawatan Kendaraan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #1a4b8d;
             --secondary-blue: #2c7bd9;
             --light-blue: #e6f2ff;
             --accent-color: #f39c12;
+            --text-color: #333;
+        }
+
+        * {
+            transition: all 0.3s ease;
         }
 
         body {
-            font-family: 'Poppins', 'Arial', sans-serif;
-            color: var(--primary-blue);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
             background-color: #f4f7f9;
             line-height: 1.6;
         }
@@ -30,7 +36,7 @@
         .hero {
             background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
             color: white;
-            padding: 120px 0;
+            padding: 150px 0;
             position: relative;
             overflow: hidden;
         }
@@ -42,12 +48,29 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" opacity="0.1"%3E%3Cpattern id="pattern" width="100" height="100" patternUnits="userSpaceOnUse"%3E%3Cpath d="M0 0 L100 0 L0 100 Z" fill="%23ffffff"%3E%3C/path%3E%3Cpath d="M100 0 L0 100 L100 100 Z" fill="%23ffffff"%3E%3C/path%3E%3C/pattern%3E%3Crect width="100%" height="100%" fill="url(%23pattern)"/%3E%3C/svg%3E');
+            background: linear-gradient(
+                45deg, 
+                rgba(26, 75, 141, 0.9), 
+                rgba(44, 123, 217, 0.9)
+            );
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-weight: 300;
+            opacity: 0.9;
         }
 
         .service-card {
@@ -99,18 +122,15 @@
             padding: 60px 0;
         }
 
-        .transparent-image {
-            background: transparent;
-            mix-blend-mode: multiply;
-        }
-
-        /* Additional responsive adjustments */
         @media (max-width: 768px) {
-            .hero, .footer {
-                text-align: center;
+            .hero {
+                padding: 100px 0;
             }
-            .hero-content {
-                margin-bottom: 30px;
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
             }
         }
     </style>
@@ -133,28 +153,27 @@
                     <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
                 </ul>
                 <div class="ms-3">
-                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-light text-primary">Daftar</a>
+                    <a href="#" class="btn btn-outline-light me-2">Login</a>
+                    <a href="#" class="btn btn-light text-primary">Daftar</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="beranda" class="hero text-center text-white">
+    <section id="beranda" class="hero">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 hero-content">
-                    <h1 class="display-4 fw-bold mb-4">Servis Kendaraan Profesional</h1>
-                    <p class="lead mb-4">Solusi terbaik untuk perawatan dan perbaikan kendaraan Anda</p>
-                    <a href="{{ route('login') }}" class="btn btn-primary-custom btn-lg">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="display-4 mb-4 hero-title text-white">
+                        Profesional Perawatan Kendaraan Anda
+                    </h1>
+                    <p class="lead mb-5 hero-subtitle">
+                        Solusi komprehensif untuk servis dan perbaikan kendaraan dengan teknologi terkini dan keahlian profesional
+                    </p>
+                    <a href="#" class="btn btn-primary-custom btn-lg">
                         <i class="fas fa-tools me-2"></i> Booking Sekarang
                     </a>
-                </div>
-                <div class="col-lg-6 hero-content">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400' preserveAspectRatio='xMidYMid meet'%3E%3Cstyle%3E.motorcycle{fill:%232c7bd9;fill-opacity:0.5;stroke:%231a4b8d;stroke-width:3;}&lt;/style%3E%3Cpath class='motorcycle' d='M200 250 C250 200, 350 200, 400 250 L450 300 Q400 350, 350 325 L300 275 Q250 250, 200 250 Z'/%3E%3Cpath class='motorcycle' d='M220 270 L180 220 Q150 190, 100 200 L50 230'/&gt;%3C/svg%gt;"
-                         alt="Motorcycle Repair"
-                         class="img-fluid rounded-4 shadow-lg transparent-image">
                 </div>
             </div>
         </div>
@@ -210,11 +229,6 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400' preserveAspectRatio='xMidYMid meet'%3E%3Cstyle%3E.workshop{fill:%232c7bd9;fill-opacity:0.3;stroke:%231a4b8d;stroke-width:2;}&lt;/style%3E%3Crect x='50' y='50' width='500' height='300' class='workshop' rx='20'/&gt;%3Cpath d='M150 200 L250 200 L250 300 L150 300 Z' fill='%231a4b8d' fill-opacity='0.5'/&gt;%3Cpath d='M350 200 L450 200 L450 300 L350 300 Z' fill='%231a4b8d' fill-opacity='0.5'/&gt;%3C/svg%3E"
-                         alt="Bengkel Workshop"
-                         class="img-fluid rounded-4 shadow-lg transparent-image">
-                </div>
-                <div class="col-lg-6 ps-lg-5">
                     <h2 class="fw-bold mb-4">Tentang Bengkel Telkom</h2>
                     <p class="lead text-muted">
                         Kami adalah bengkel profesional dengan teknisi berpengalaman yang siap memberikan layanan terbaik untuk kendaraan Anda.
@@ -225,6 +239,14 @@
                         <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Garansi Layanan</li>
                     </ul>
                     <a href="#" class="btn btn-primary mt-3">Pelajari Lebih Lanjut</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-light p-4 rounded shadow-sm">
+                        <h5 class="mb-3">Komitmen Kami</h5>
+                        <p class="text-muted">
+                            Memberikan layanan berkualitas tinggi, mengutamakan kepuasan pelanggan, dan menjunjung tinggi profesionalisme dalam setiap pekerjaan.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,91 +280,5 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Simple JavaScript for Modal -->
-    <script>
-        function openModal() {
-            document.getElementById('bookingModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('bookingModal').classList.add('hidden');
-        }
-
-        // Open modal when booking buttons are clicked
-        document.querySelectorAll('[href="#booking"]').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal();
-            });
-        });
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            // Toggle menu
-            mobileMenu.classList.toggle('hidden');
-            // Toggle icon
-            const icon = mobileMenuButton.querySelector('i');
-            if (icon.classList.contains('fa-bars')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-
-                // Close mobile menu if open
-                mobileMenu.classList.add('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-
-                // Special handling for modal triggers
-                if (href === '#booking') {
-                    openModal();
-                    return;
-                }
-
-                // Smooth scroll to section
-                if (href !== '#') {
-                    const section = document.querySelector(href);
-                    if (section) {
-                        section.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Handle scroll events for navbar
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('shadow-lg');
-            } else {
-                header.classList.remove('shadow-lg');
-            }
-        });
-    </script>
 </body>
 </html>
