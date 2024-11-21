@@ -153,8 +153,8 @@
                     <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
                 </ul>
                 <div class="ms-3">
-                    <a href="#" class="btn btn-outline-light me-2">Login</a>
-                    <a href="#" class="btn btn-light text-primary">Daftar</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-light text-primary">Daftar</a>
                 </div>
             </div>
         </div>
