@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #1a4b8d;
@@ -30,7 +32,7 @@
         .navbar {
             background-color: rgba(26, 75, 141, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .hero {
@@ -48,11 +50,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-                45deg, 
-                rgba(26, 75, 141, 0.9), 
-                rgba(44, 123, 217, 0.9)
-            );
+            background: linear-gradient(45deg,
+                    rgba(26, 75, 141, 0.9),
+                    rgba(44, 123, 217, 0.9));
             clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
 
@@ -65,7 +65,7 @@
         .hero-title {
             font-weight: 700;
             letter-spacing: -1px;
-            text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .hero-subtitle {
@@ -77,14 +77,14 @@
             transition: all 0.3s ease;
             border: none;
             background-color: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             border-radius: 15px;
             overflow: hidden;
         }
 
         .service-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         .service-card .card-icon {
@@ -126,15 +126,18 @@
             .hero {
                 padding: 100px 0;
             }
+
             .hero-title {
                 font-size: 2.5rem;
             }
+
             .hero-subtitle {
                 font-size: 1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -171,7 +174,7 @@
                     <p class="lead mb-5 hero-subtitle">
                         Solusi komprehensif untuk servis dan perbaikan kendaraan dengan teknologi terkini dan keahlian profesional
                     </p>
-                    <a href="#" class="btn btn-primary-custom btn-lg">
+                    <a href="{{ route('register') }}" class="btn btn-primary-custom btn-lg">
                         <i class="fas fa-tools me-2"></i> Booking Sekarang
                     </a>
                 </div>
@@ -238,7 +241,7 @@
                         <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Peralatan Modern</li>
                         <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Garansi Layanan</li>
                     </ul>
-                    <a href="#" class="btn btn-primary mt-3">Pelajari Lebih Lanjut</a>
+                    <a href="{{ route('lebihlanjut') }}" class="btn btn-primary mt-3">Pelajari Lebih Lanjut</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="bg-light p-4 rounded shadow-sm">
@@ -263,8 +266,24 @@
                 <div class="col-md-4">
                     <h5 class="fw-bold mb-3">Kontak Kami</h5>
                     <p>
-                        <i class="fas fa-map-marker-alt me-2"></i> Jl. Esemka No.5, Pekanbaru<br>
-                        <i class="fas fa-phone me-2"></i> (021) 1234-5678<br>
+                        <a href="https://www.google.com/maps/place/SMK+Telkom+Pekanbaru/@0.4844817,101.3639169,17z/data=!3m1!4b1!4m6!3m5!1s0x31d5a9245e855629:0x875ac3c27ed550d3!8m2!3d0.4844763!4d101.3664918!16s%2Fg%2F1pzt_wjjm?entry=ttu&g_ep=EgoyMDI0MTExOC4wIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D"
+                            target="_blank"
+                            class="text-decoration-none"
+                            style="color: white; transition: color 0.2s;">
+                            <i class="fas fa-map-marker-alt me-2"></i> Jl. Raya Esemka No.5, Pekanbaru
+                        </a>
+                        <br>
+                        <style>
+                            a:hover {
+                                color: #00ffcc;
+                                /* Warna saat hover */
+                                text-decoration: underline;
+                                /* Menambahkan garis bawah saat hover */
+                            }
+                        </style>
+                        <a href="https://wa.me/6287735054758?text=Halo%2C+saya+ingin+bertanya" class="text-white text-decoration-none" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i> +6287735054758
+                        </a><br>
                         <i class="fas fa-envelope me-2"></i> info@bengkeltelkom.com
                     </p>
                 </div>
@@ -281,4 +300,5 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminBookingController;
+use App\Http\Controllers\BengkelController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
@@ -12,7 +13,8 @@ Route::get('/', function () {
     return view('landingpage');
 })->name('landingpage');
 
-// Authentication Routes
+Route::get('/lebih-lanjut', [BengkelController::class, 'index'])->name('lebihlanjut');
+
 // Show Login Page
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
