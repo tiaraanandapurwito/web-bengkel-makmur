@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengkel Telkom - Solusi Telekomunikasi Terpercaya</title>
+    <title>Bengkel Telkom - Solusi Kendaraan Anda</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
@@ -14,10 +14,18 @@
             background: linear-gradient(135deg, #0047AB 0%, #003580 100%);
         }
         .service-icon {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .service-icon:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #002d60;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -25,66 +33,77 @@
     <header class="gradient-header text-white py-12 text-center">
         <div class="container mx-auto px-4">
             <h1 class="text-4xl font-bold mb-4">Bengkel Telkom</h1>
-            <p class="text-xl opacity-90">Melayani dengan Teknologi dan Kepercayaan</p>
+            <p class="text-xl opacity-90">Melayani dengan Keahlian dan Kepercayaan</p>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8">
+        <!-- Bagian Sejarah -->
         <section id="sejarah" class="mb-12 bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-3xl font-semibold text-blue-800 mb-4">Sejarah Bengkel Telkom</h2>
+            <p class="text-lg leading-relaxed mb-4">
+                Bengkel Telkom didirikan pada tahun 1995 sebagai bengkel kendaraan kecil yang berfokus pada perawatan dasar. 
+                Dengan kerja keras dan dedikasi, Bengkel Makmur berkembang menjadi pusat layanan kendaraan terpercaya di daerah ini.
+            </p>
+            <p class="text-lg leading-relaxed mb-4">
+                Kini, kami menyediakan berbagai layanan, mulai dari perawatan berkala hingga perbaikan mesin canggih. 
+                Dukungan pelanggan yang loyal dan keahlian mekanik profesional adalah fondasi keberhasilan kami.
+            </p>
             <p class="text-lg leading-relaxed">
-                Bengkel Telkom berdiri pada tahun 1990 sebagai bagian dari upaya Telkom Indonesia untuk mendukung layanan teknis
-                yang berkaitan dengan instalasi jaringan, pemeliharaan perangkat, dan pengembangan infrastruktur telekomunikasi. 
-                Berawal dari workshop kecil, kini Bengkel Telkom telah berkembang menjadi salah satu layanan terkemuka di bidang servis telekomunikasi di Indonesia.
+                Dengan terus mengikuti perkembangan teknologi otomotif, kami berkomitmen untuk memberikan layanan terbaik 
+                bagi pelanggan, memastikan kendaraan Anda tetap dalam kondisi optimal.
             </p>
         </section>
 
+        <!-- Bagian Layanan -->
         <section id="layanan" class="mb-12">
             <h2 class="text-3xl font-semibold text-blue-800 mb-6">Layanan Kami</h2>
             <div class="grid md:grid-cols-2 gap-6">
+                <!-- Layanan -->
                 <div class="bg-white p-6 rounded-lg shadow-md flex items-center service-icon">
                     <svg class="w-12 h-12 text-blue-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zM19.742 13c.543 1.493.742 3.09.742 4.5 0 1.41-.199 3.007-.742 4.5H4.258C3.715 20.493 3.516 18.897 3.516 17.5c0-1.41.199-3.007.742-4.5H19.742z"></path>
                     </svg>
-                    <p>Instalasi dan pemeliharaan jaringan fiber optic</p>
+                    <p>Servis rutin dan perawatan berkala</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md flex items-center service-icon">
                     <svg class="w-12 h-12 text-blue-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 15.75h.5a.75.75 0 01.75.75v.5m0 2.5v.5a.75.75 0 01-.75.75h-.5m-2.5-.75h-.5a.75.75 0 01-.75-.75v-.5m0-2.5v-.5a.75.75 0 01.75-.75h.5"></path>
                     </svg>
-                    <p>Servis perangkat telekomunikasi</p>
+                    <p>Perbaikan mesin dan transmisi</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md flex items-center service-icon">
                     <svg class="w-12 h-12 text-blue-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V7a1 1 0 011-1h1a1 1 0 001-1V4a1 1 0 00-1-1H4a1 1 0 01-1-1V1h12v1a1 1 0 01-1 1h-1a2 2 0 00-2 2v1z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"></path>
                     </svg>
-                    <p>Konsultasi dan pengembangan infrastruktur telekomunikasi</p>
+                    <p>Penggantian suku cadang asli</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md flex items-center service-icon">
                     <svg class="w-12 h-12 text-blue-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 9.172a4 4 0 10-5.656 5.656l1.414 1.414M11 11v4"></path>
                     </svg>
-                    <p>Upgrade perangkat jaringan untuk rumah dan bisnis</p>
+                    <p>Pemeriksaan rem dan suspensi</p>
                 </div>
             </div>
         </section>
 
+        <!-- Bagian Cara Booking -->
         <section id="cara-booking" class="mb-12 bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-3xl font-semibold text-blue-800 mb-6">Cara Booking Pemesanan Servis</h2>
             <div class="grid md:grid-cols-2 gap-6 items-center">
                 <div>
-                    <p class="text-lg mb-4">Ikuti langkah-langkah berikut untuk memesan layanan servis di Bengkel Telkom:</p>
+                    <p class="text-lg mb-4">Ikuti langkah berikut untuk memesan servis kendaraan Anda:</p>
                     <ol class="list-decimal list-inside space-y-2 text-lg">
-                        <li>Kunjungi website resmi kami di <a href="https://www.telkom.co.id" target="_blank" class="text-blue-600 hover:underline">www.telkom.co.id</a>.</li>
+                        <li>Kunjungi website resmi kami di <a href="{{ route('login') }}" target="_blank" class="text-blue-600 hover:underline">www.bengkeltelkom.co.id</a>.</li>
                         <li>Pilih menu <strong>Booking Servis</strong>.</li>
                         <li>Isi formulir pemesanan dengan lengkap.</li>
                         <li>Pilih jadwal yang tersedia.</li>
                         <li>Konfirmasi pemesanan.</li>
                     </ol>
-                    <p class="mt-4 text-lg">Atau hubungi call center kami di <strong class="text-blue-800">123</strong>.</p>
+                    <p class="mt-4 text-lg">Atau hubungi call center kami di <strong class="text-blue-800">12345</strong>.</p>
                 </div>
                 <div class="flex justify-center">
-                    <a href="https://www.telkom.co.id" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
+                    <a href="{{ route('login') }}" target="_blank" class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">
                         Pesan Sekarang
                     </a>
                 </div>
