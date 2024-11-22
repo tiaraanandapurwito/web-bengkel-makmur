@@ -18,6 +18,7 @@ class CreateBookingsTable extends Migration
             $table->text('details')->nullable();
             $table->enum('status', ['pending', 'confirmed', 'completed'])->default('pending');
             $table->timestamp('completed_at')->nullable(); // Menambahkan kolom completed_at
+            $table->integer('queue_number')->nullable();
             $table->timestamps();
         });
     }

@@ -100,7 +100,6 @@
                         <li>Pilih jadwal yang tersedia.</li>
                         <li>Konfirmasi pemesanan.</li>
                     </ol>
-                    <p class="mt-4 text-lg">Atau hubungi call center kami di <strong class="text-blue-800">12345</strong>.</p>
                 </div>
                 <div class="flex justify-center">
                     <a href="{{ route('login') }}" target="_blank" class="btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">

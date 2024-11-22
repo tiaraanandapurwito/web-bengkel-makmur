@@ -29,7 +29,6 @@ class BookingController extends Controller
     // Store the booking data
     public function store(Request $request)
     {
-
         // Validasi data
         $validated = $request->validate([
             'vehicle_type' => 'required|string|max:255',
@@ -43,9 +42,17 @@ class BookingController extends Controller
             'service_date.after' => 'Tanggal servis harus setelah hari ini.',
             'details.string' => 'Detail harus berupa teks.',
         ]);
-
+    
+        // Cek jika ini adalah pesanan pertama yang perlu diubah menjadi confirmed
+        $isFirstBooking = Booking::where('status', 'pending')->count() == 0;
+        // dd( $isFirstBooking ? 'confirmed' : 'pending');
+    
+        // Tentukan nomor antrian untuk pemesanan yang baru
+        // Hitung jumlah pemesanan dengan status pending atau confirmed
+        $queueNumber = Booking::whereIn('status', ['pending', 'confirmed', 'completed'])->count() + 1;
+        // dd($queueNumber);
+    
         // Simpan pemesanan
-        // dd($request->all(), $request->service_id);
         $booking = Booking::create([
             'user_id' => auth()->id(), // ID pengguna yang login
             'vehicle_type' => $validated['vehicle_type'],
@@ -53,10 +60,10 @@ class BookingController extends Controller
             'price' => $request->service_price,
             'service_date' => $validated['service_date'],
             'details' => $validated['details'] ?? null, // Null jika tidak ada detail
-            'status' => 'pending', // Status awal
+            'status' => $isFirstBooking ? 'confirmed' : 'pending', // Jika pesanan pertama, status langsung confirmed
+            'queue_number' => $queueNumber, // Set nomor antrian
         ]);
-
-
+    
         // Jika permintaan adalah AJAX
         if ($request->ajax()) {
             return response()->json([
@@ -65,26 +72,12 @@ class BookingController extends Controller
                 'data' => $booking, // Return data pemesanan untuk kebutuhan front-end
             ], 201);
         }
-
-        // Jika bukan AJAX, redirect ke halaman pemesanan
+    
+        // Redirect ke halaman pemesanan jika tidak menggunakan AJAX
         return redirect()->route('pemesanan')->with('success', 'Pesanan telah ditambahkan!');
-        // try {
-        // } catch (\Exception $e) {
-        //     // Log kesalahan untuk debugging
-        //     \Log::error('Error creating booking: ' . $e->getMessage());
-
-        //     // Jika AJAX, berikan respons JSON dengan error
-        //     if ($request->ajax()) {
-        //         return response()->json([
-        //             'success' => false,
-        //             'message' => 'Terjadi kesalahan saat membuat pemesanan.',
-        //         ], 500);
-        //     }
-
-        //     // Jika bukan AJAX, redirect dengan error
-        //     return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat membuat pemesanan.']);
-        // }
     }
+    
+
 
     // Show all bookings
     public function index()
@@ -102,18 +95,29 @@ class BookingController extends Controller
             ->orderBy('service_date', 'asc') // Urutkan berdasarkan tanggal layanan
             ->get();
 
-        // Tambahkan nomor antrian global ke setiap pemesanan
-        $confirmedBookings = $confirmedBookings->map(function ($booking, $index) {
-            $booking->queue_number = $index + 1; // Nomor antrian global
-            return $booking;
-        });
+        // Cek apakah tanggal hari ini berbeda dengan tanggal terakhir antrean
+        $today = \Carbon\Carbon::today()->format('Y-m-d');
+        $lastConfirmedBooking = $confirmedBookings->where('status', 'confirmed')->last();
+
+        // Pastikan service_date adalah objek Carbon
+        $lastConfirmedBookingDate = \Carbon\Carbon::parse($lastConfirmedBooking->service_date);
+
+        // Sekarang Anda dapat memanggil format() pada objek Carbon
+        if ($lastConfirmedBooking && $lastConfirmedBookingDate->format('Y-m-d') !== $today) {
+            // Reset nomor antrian
+            $confirmedBookings->each(function ($booking, $index) use ($today) {
+                if (!$booking->queue_number || \Carbon\Carbon::parse($booking->service_date)->format('Y-m-d') !== $today) {
+                    $booking->queue_number = $index + 1;
+                    $booking->save();
+                }
+            });
+        }
 
         // Cari antrean yang sedang berlangsung
         $currentQueue = $confirmedBookings->firstWhere('status', 'confirmed');
 
         return view('pemesanan', compact('userBookings', 'confirmedBookings', 'currentQueue'));
     }
-
 
 
     public function bookingHistory()

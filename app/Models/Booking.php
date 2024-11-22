@@ -20,6 +20,7 @@ class Booking extends Model
         'status',
         // 'price',
         'completed_at',
+        'queue_number',
     ];
 
     // Tipe data kolom tanggal

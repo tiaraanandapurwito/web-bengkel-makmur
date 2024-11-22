@@ -23,28 +23,51 @@ class AdminBookingController extends Controller
 
     // Mengupdate status pemesanan
     public function updateStatus(Request $request)
-    {
-        $request->validate([
-            'bookingId' => 'required|exists:bookings,id',
-            'newStatus' => 'required|in:pending,confirmed,completed',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'bookingId' => 'required|exists:bookings,id',
+        'newStatus' => 'required|in:pending,confirmed,completed',
+    ]);
 
-        $booking = Booking::find($request->bookingId);
-        $booking->status = $request->newStatus;
+    // Temukan booking berdasarkan ID
+    $booking = Booking::findOrFail($request->bookingId);
+    $booking->status = $request->newStatus;
 
-        // Jika status berubah menjadi completed, catat waktu penyelesaian
-        if ($request->newStatus === 'completed' && !$booking->completed_at) {
-            $booking->completed_at = now();
-        }
-
-        $booking->save();
-
-        if ($request->newStatus === 'completed') {
-            return redirect()->route('admin.HistoryBooking')->with('success', 'Pesanan dipindahkan ke history.');
-        }
-
-        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+    // Catat waktu penyelesaian jika status berubah menjadi completed
+    if ($request->newStatus === 'completed' && !$booking->completed_at) {
+        $booking->completed_at = now();
     }
+
+    // Simpan perubahan status
+    $booking->save();
+
+    // Jika status completed, otomatis ubah status pesanan berikutnya
+    if ($request->newStatus === 'completed') {
+        // Ubah status pesanan pertama menjadi confirmed jika ada
+        $nextPendingBooking = Booking::where('status', 'pending')
+            ->orderBy('created_at', 'asc')
+            ->first();
+
+        if ($nextPendingBooking) {
+            $nextPendingBooking->status = 'confirmed';
+            $nextPendingBooking->save();
+        }
+
+        // Redirect ke halaman history jika status completed
+        return redirect()->route('admin.HistoryBooking')->with('success', 'Pesanan dipindahkan ke history.');
+    }
+
+    // Cek jika ini adalah pesanan pertama yang perlu diubah menjadi confirmed
+    if (Booking::where('status', 'pending')->count() === 0 && $request->newStatus === 'confirmed') {
+        // Jika ini adalah pesanan pertama, ubah statusnya menjadi confirmed otomatis
+        $booking->status = 'confirmed';
+        $booking->save();
+    }
+
+    // Redirect kembali jika status bukan completed
+    return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+}
 
     public function history()
     {
