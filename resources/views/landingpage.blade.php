@@ -340,19 +340,19 @@
             <!--logo media partner-->
             <div class="logos">
                 <div class="logos-slide">
-                    <img src="{{ asset('gambar/img/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    {{-- <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota"> --}}
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
                 </div>
 
                 <div class="logos-slide">
-                    <img src="{{ asset('assets/gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    {{-- <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota"> --}}
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
                 </div>
             </div>
         </div>

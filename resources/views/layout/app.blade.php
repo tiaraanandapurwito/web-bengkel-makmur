@@ -216,6 +216,7 @@
             width: 20px;
             text-align: center;
         }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -232,7 +233,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #2563eb;
         }
-
     </style>
     @yield('styles')
 </head>
@@ -250,38 +250,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">
-                                <i class="fas fa-sign-in-alt me-2"></i>Login
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </a>
+                    </li>
                     @else
-                        <li class="nav-item user-dropdown">
-                            <div class="dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="fas fa-user-circle me-2"></i>{{ Auth::user()->name }}
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fas fa-user"></i>Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fas fa-sign-out-alt"></i>Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                    
                     @endguest
                 </ul>
             </div>
@@ -289,57 +264,72 @@
     </nav>
 
     @auth
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-user">
-                    <div class="user-avatar">
-                        {{ substr(Auth::user()->name, 0, 1) }}
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    {{ substr(Auth::user()->name, 0, 1) }}
+                </div>
+                <div class="user-info">
+                    <div class="dropdown">
+                        <button class="btn p-0 m-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle me-2"></i>{{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt"></i>Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="user-info">
-                        <h2 class="user-name">{{ Auth::user()->name }}</h2>
-                        <div class="date-display">
-                            {{ \Carbon\Carbon::now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
-                        </div>
+                    <div class="date-display">
+                        {{ \Carbon\Carbon::now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
                     </div>
                 </div>
             </div>
-            <ul class="nav-menu">
-                @if (auth()->user()->isAdmin)
-                    <li class="nav-menu-item">
-                        <a href="{{ route('admin.bookings') }}"
-                            class="nav-menu-link {{ Request::routeIs('admin.bookings') ? 'active' : '' }}">
-                            <i class="fas fa-list-alt"></i> <span>List Pemesanan</span>
-                        </a>
-                    </li>
-                    <li class="nav-menu-item">
-                        <a href="{{ route('admin.servis') }}"
-                            class="nav-menu-link {{ Request::routeIs('admin.servis') ? 'active' : '' }}">
-                            <i class="fas fa-tools"></i>
-                            <span>Tambah Layanan</span>
-                        </a>
-                    </li>
-                    <li class="nav-menu-item">
-                        <a href="{{ route('admin.HistoryBooking') }}"
-                            class="nav-menu-link {{ request()->routeIs('admin.HistoryBooking') ? 'active' : '' }}">
-                            <i class="fas fa-list-alt"></i> <span>History Booking</span>
-                        </a>
-                    </li>
-                @else
-                    <li class="nav-menu-item">
-                        <a href="{{ route('dashboard') }}"
-                            class="nav-menu-link {{ Request::routeIs('dashboard') ? 'active' : '' }}">
-                            <i class="fas fa-home"></i> <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-menu-item">
-                        <a href="{{ route('historypemesanan') }}"
-                            class="nav-menu-link {{ Request::routeIs('historypemesanan') ? 'active' : '' }}">
-                            <i class="fas fa-history"></i> <span>History</span>
-                        </a>
-                    </li>
-                @endif
-            </ul>
         </div>
+        <ul class="nav-menu">
+            @if (auth()->user()->isAdmin)
+            <li class="nav-menu-item">
+                <a href="{{ route('admin.bookings') }}"
+                    class="nav-menu-link {{ Request::routeIs('admin.bookings') ? 'active' : '' }}">
+                    <i class="fas fa-list-alt"></i> <span>List Pemesanan</span>
+                </a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="{{ route('admin.servis') }}"
+                    class="nav-menu-link {{ Request::routeIs('admin.servis') ? 'active' : '' }}">
+                    <i class="fas fa-tools"></i>
+                    <span>Tambah Layanan</span>
+                </a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="{{ route('admin.HistoryBooking') }}"
+                    class="nav-menu-link {{ request()->routeIs('admin.HistoryBooking') ? 'active' : '' }}">
+                    <i class="fas fa-list-alt"></i> <span>History Booking</span>
+                </a>
+            </li>
+            @else
+            <li class="nav-menu-item">
+                <a href="{{ route('dashboard') }}"
+                    class="nav-menu-link {{ Request::routeIs('dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-home"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-menu-item">
+                <a href="{{ route('historypemesanan') }}"
+                    class="nav-menu-link {{ Request::routeIs('historypemesanan') ? 'active' : '' }}">
+                    <i class="fas fa-history"></i> <span>History</span>
+                </a>
+            </li>
+            @endif
+        </ul>
+    </div>
     @endauth
 
     <div class="main-content">
@@ -367,4 +357,5 @@
 
     @yield('scripts')
 </body>
+
 </html>
