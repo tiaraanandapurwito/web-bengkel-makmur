@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://files.oaiusercontent.com/file-VosSFDF8inPYfA1qmG7YTK?se=2024-11-25T08%3A30%3A23Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D1611ce4f-cddb-4bf1-bf67-802c5f78fe61.webp&sig=kBlZolMQ4SSlYSRwruzUd0a1kelvl6u9KFHsHWFi1Lc%3D" alt="Bengkel Makmur Logo" width="200">
+  <img src="{{ asset('assets/img/download.jpeg') }}" alt="Bengkel Makmur Logo" width="200">
 </div>
 
 ## 🚀 Tentang Bengkel Makmur
@@ -80,10 +80,10 @@ php artisan serve
 
 ## 📌 Prasyarat
 
-- PHP >= 8.1
-- Composer
-- Node.js >= 16.x
-- MySQL >= 8.0
+- PHP >= terbaru
+- Composer>=terbaru
+- Node.js >= terbaru
+- MySQL >= terbaru
 
 ## 🔒 Keamanan
 
