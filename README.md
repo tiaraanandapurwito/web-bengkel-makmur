@@ -109,7 +109,7 @@ Perangkat lunak ini adalah properti Bengkel Makmur dan dilindungi oleh undang-un
 
 ## 👥 Tim Pengembang
 
-- Backend Developer - [Muhammad Fa'hriyansah]
+- Backend Developer - [Muhammad Fa'hriyansah & Muhammad El-Idrisi]
 - Frontend Developer - [Tiara Ananda Purwito]
 
 ---
