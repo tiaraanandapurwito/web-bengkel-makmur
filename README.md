@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="{{ asset('assets/img/download.jpeg') }}" alt="Bengkel Makmur Logo" width="200">
+  <img src="/public/assets/img/download.jpeg" alt="Bengkel Makmur Logo" width="200">
 </div>
 
 ## 🚀 Tentang Bengkel Makmur
