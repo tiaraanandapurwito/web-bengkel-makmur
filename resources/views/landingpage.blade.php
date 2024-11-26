@@ -4,12 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengkel Telkom - Solusi Perawatan Kendaraan</title>
+    <title>Bengkel Makmur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"> --}}
     <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
         :root {
             --primary-blue: #1a4b8d;
             --secondary-blue: #2c7bd9;
@@ -34,6 +52,30 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        .navbar .navbar-brand {
+            text-decoration: none !important;
+        }
+
+        .navbar-nav .nav-link {
+            text-decoration: none !important;
+            color: white;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #afafac;
+        }
+
+        .ms-3 .btn {
+            text-decoration: none !important;
+            /* Hilangkan garis bawah pada tombol Login dan Daftar */
+        }
+
+        .ms-3 .btn:hover {
+            text-decoration: none;
+            /* Opsional: tetap tanpa garis saat hover */
+        }
+
 
         .hero {
             background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
@@ -116,6 +158,37 @@
             background-color: var(--light-blue);
         }
 
+        /* logo media-partner section start */
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .logos {
+            overflow: hidden;
+            padding: 60px 0;
+            /* background: white; */
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .logos-slide {
+            display: inline-block;
+            animation: 10s slide infinite linear;
+        }
+
+        .logos-slide img {
+            height: 50px;
+            margin: 0 50px;
+        }
+
+        /* logo media-partner section end */
+
         .footer {
             background-color: var(--primary-blue);
             color: white;
@@ -143,7 +216,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-tools me-2"></i> Bengkel Telkom
+                <i class="fas fa-tools me-2"></i> Bengkel Makmur
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -172,9 +245,11 @@
                         Profesional Perawatan Kendaraan Anda
                     </h1>
                     <p class="lead mb-5 hero-subtitle">
-                        Solusi komprehensif untuk servis dan perbaikan kendaraan dengan teknologi terkini dan keahlian profesional
+                        Solusi handal untuk servis dan perbaikan kendaraan dengan teknologi terkini dan keahlian
+                        profesional
                     </p>
-                    <a href="{{ route('register') }}" class="btn btn-primary-custom btn-lg">
+                    <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg"
+                        style="text-decoration: none !important;">
                         <i class="fas fa-tools me-2"></i> Booking Sekarang
                     </a>
                 </div>
@@ -220,7 +295,7 @@
                             <i class="fas fa-bolt fa-2x"></i>
                         </div>
                         <h5 class="fw-semibold">Sistem Kelistrikan</h5>
-                        <p class="text-muted">Perawatan sistem kelistrikan motor</p>
+                        <p class="text-muted">Perawatan sistem kelistrikan kendaraan</p>
                     </div>
                 </div>
             </div>
@@ -232,22 +307,25 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">Tentang Bengkel Telkom</h2>
+                    <h2 class="fw-bold mb-4">Tentang Bengkel Makmur</h2>
                     <p class="lead text-muted">
-                        Kami adalah bengkel profesional dengan teknisi berpengalaman yang siap memberikan layanan terbaik untuk kendaraan Anda.
+                        Kami adalah bengkel profesional dengan teknisi berpengalaman yang siap memberikan layanan
+                        terbaik untuk kendaraan Anda.
                     </p>
                     <ul class="list-unstyled">
                         <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Teknisi Berpengalaman</li>
                         <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Peralatan Modern</li>
                         <li class="mb-2"><i class="fas fa-check text-primary me-2"></i>Garansi Layanan</li>
                     </ul>
-                    <a href="{{ route('lebihlanjut') }}" class="btn btn-primary mt-3">Pelajari Lebih Lanjut</a>
+                    <a href="{{ route('lebihlanjut') }}" class="btn btn-primary mt-3"
+                        style="text-decoration: none !important;">Pelajari Lebih Lanjut</a>
                 </div>
                 <div class="col-lg-6">
                     <div class="bg-light p-4 rounded shadow-sm">
                         <h5 class="mb-3">Komitmen Kami</h5>
                         <p class="text-muted">
-                            Memberikan layanan berkualitas tinggi, mengutamakan kepuasan pelanggan, dan menjunjung tinggi profesionalisme dalam setiap pekerjaan.
+                            Memberikan layanan berkualitas tinggi, mengutamakan kepuasan pelanggan, dan menjunjung
+                            tinggi profesionalisme dalam setiap pekerjaan.
                         </p>
                     </div>
                 </div>
@@ -255,20 +333,45 @@
         </div>
     </section>
 
+    <!--media partner section start-->
+    <div class="container-fluid pt-5">
+        <div class="container text-center" data-aos="fade-right">
+            <h5 class="display-3" id="media-partner">Our Partner</h5>
+            <!--logo media partner-->
+            <div class="logos">
+                <div class="logos-slide">
+                    <img src="{{ asset('gambar/img/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    {{-- <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota"> --}}
+                </div>
+
+                <div class="logos-slide">
+                    <img src="{{ asset('assets/gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    {{-- <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota">
+                    <img src="{{ asset('gambar/toyota.png') }}" width="200" height="160" alt="Toyota"> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--media partner section end-->
+
     <!-- Footer -->
     <footer id="kontak" class="footer py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5 class="fw-bold mb-3">Bengkel Telkom</h5>
+                    <h5 class="fw-bold mb-3">Bengkel Makmur</h5>
                     <p>Solusi profesional untuk perawatan dan perbaikan kendaraan Anda</p>
                 </div>
                 <div class="col-md-4">
                     <h5 class="fw-bold mb-3">Kontak Kami</h5>
                     <p>
                         <a href="https://www.google.com/maps/place/SMK+Telkom+Pekanbaru/@0.4844817,101.3639169,17z/data=!3m1!4b1!4m6!3m5!1s0x31d5a9245e855629:0x875ac3c27ed550d3!8m2!3d0.4844763!4d101.3664918!16s%2Fg%2F1pzt_wjjm?entry=ttu&g_ep=EgoyMDI0MTExOC4wIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D"
-                            target="_blank"
-                            class="text-decoration-none"
+                            target="_blank" class="text-decoration-none"
                             style="color: white; transition: color 0.2s;">
                             <i class="fas fa-map-marker-alt me-2"></i> Jl. Raya Esemka No.5, Pekanbaru
                         </a>
@@ -281,10 +384,11 @@
                                 /* Menambahkan garis bawah saat hover */
                             }
                         </style>
-                        <a href="https://wa.me/6287735054758?text=Halo%2C+saya+ingin+bertanya" class="text-white text-decoration-none" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i> +6287735054758
+                        <a href="https://wa.me/6285363540354" class="text-white text-decoration-none"
+                            target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i> +6285363540354
                         </a><br>
-                        <i class="fas fa-envelope me-2"></i> info@bengkeltelkom.com
+                        <i class="fas fa-envelope me-2"></i> bengkelmakmurpku@gmail.com
                     </p>
                 </div>
                 <div class="col-md-4">

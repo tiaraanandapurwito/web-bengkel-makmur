@@ -17,22 +17,44 @@
     background: #2563eb;
 }
 
-/* section.bg-gradient-to-r {
-    background: linear-gradient(to right, rgba(72, 101, 128, 0.8), rgba(51, 86, 151, 0.8)),
-        url('https://www.mpmhondajatim.com/assets/uploads/files/blog_foto/1681291186_01gfjd3xmxdkx4gfskb306xfht.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    padding-bottom: 255px;
-    color: #fff;
+/* media-partner section start */
+#media-partner{
+    background-color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-family: "Raleway", Sans-serif;
 }
 
-#layanan.py-20 {
-    padding-top: 30px;
-    padding-bottom: 25px;
+#media-partner.display-3 {
+  margin-top: 50px;
+  font-size: 45px;
+}
+/* media-partner section end */
+
+/* logo media-partner section start */
+@keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+.logos {
+    overflow: hidden;
+    padding: 60px 0;
+    background: white;
+    white-space: nowrap;
+    position: relative;
 }
 
-#fitur.py-20 {
-    padding-top: 30px;
-    padding-bottom: 10px;
-} */
+.logos-slide {
+    display: inline-block;
+    animation: 10s slide infinite linear;
+  }
+
+  .logos-slide img {
+    height: 50px;
+    margin: 0 50px;
+  }
+/* logo media-partner section end */

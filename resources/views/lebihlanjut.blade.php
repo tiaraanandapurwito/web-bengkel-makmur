@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bengkel Telkom - Solusi Kendaraan Anda</title>
+    <title>Bengkel Makmur I Pelajari Lanjut</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
         }
         .gradient-header {
-            background: linear-gradient(135deg, #0047AB 0%, #003580 100%);
+            background: linear-gradient(135deg, #0047AB 0%, #3975c9 100%);
         }
         .service-icon {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -32,7 +49,7 @@
 <body class="antialiased text-gray-800">
     <header class="gradient-header text-white py-12 text-center">
         <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold mb-4">Bengkel Telkom</h1>
+            <h1 class="text-4xl font-bold mb-4">Bengkel Makmur</h1>
             <p class="text-xl opacity-90">Melayani dengan Keahlian dan Kepercayaan</p>
         </div>
     </header>
@@ -40,17 +57,17 @@
     <main class="container mx-auto px-4 py-8">
         <!-- Bagian Sejarah -->
         <section id="sejarah" class="mb-12 bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-3xl font-semibold text-blue-800 mb-4">Sejarah Bengkel Telkom</h2>
+            <h2 class="text-3xl font-semibold text-blue-800 mb-4">Sejarah Bengkel Makmur</h2>
             <p class="text-lg leading-relaxed mb-4">
-                Bengkel Telkom didirikan pada tahun 1995 sebagai bengkel kendaraan kecil yang berfokus pada perawatan dasar. 
+                Bengkel Makmur didirikan pada tahun 2018 sebagai bengkel kendaraan kecil yang berfokus pada perawatan dasar.
                 Dengan kerja keras dan dedikasi, Bengkel Makmur berkembang menjadi pusat layanan kendaraan terpercaya di daerah ini.
             </p>
             <p class="text-lg leading-relaxed mb-4">
-                Kini, kami menyediakan berbagai layanan, mulai dari perawatan berkala hingga perbaikan mesin canggih. 
+                Kini, kami menyediakan berbagai layanan, mulai dari perawatan berkala hingga perbaikan mesin canggih.
                 Dukungan pelanggan yang loyal dan keahlian mekanik profesional adalah fondasi keberhasilan kami.
             </p>
             <p class="text-lg leading-relaxed">
-                Dengan terus mengikuti perkembangan teknologi otomotif, kami berkomitmen untuk memberikan layanan terbaik 
+                Dengan terus mengikuti perkembangan teknologi otomotif, kami berkomitmen untuk memberikan layanan terbaik
                 bagi pelanggan, memastikan kendaraan Anda tetap dalam kondisi optimal.
             </p>
         </section>

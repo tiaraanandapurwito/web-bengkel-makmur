@@ -29,7 +29,7 @@
         }
 
         .navbar {
-            background-color: var(--bg-white);
+            background-color: rgb(68, 68, 235);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
             padding: 1rem 1.5rem;
             position: fixed;
@@ -41,7 +41,7 @@
 
         .navbar-brand {
             font-weight: 600;
-            color: var(--primary-color) !important;
+            color: white !important;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -52,21 +52,21 @@
         }
 
         .nav-link {
-            color: var(--text-primary) !important;
+            color: white;
             font-weight: 500;
             padding: 0.5rem 1rem !important;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
 
-        .nav-link:hover {
+        /* .nav-link:hover {
             color: var(--primary-color) !important;
             background-color: rgba(67, 97, 238, 0.05);
-        }
+        } */
 
         .nav-link.active {
-            color: var(--primary-color) !important;
-            background-color: rgba(67, 97, 238, 0.1);
+            color: rgb(82, 78, 78);
+            background-color: rgba(239, 240, 248, 0.1);
         }
 
         .sidebar {
@@ -216,23 +216,23 @@
             width: 20px;
             text-align: center;
         }
-
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--bg-light);
+            background: #f1f1f1;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--text-secondary);
-            border-radius: 3px;
+            background: #3b82f6;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-primary);
+            background: #2563eb;
         }
+
     </style>
     @yield('styles')
 </head>
@@ -245,7 +245,7 @@
             </button>
             <a class="navbar-brand" href="#">
                 <i class="fas fa-tools"></i>
-                BengkelTelkom
+                Bengkel Makmur
             </a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
