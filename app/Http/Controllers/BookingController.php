@@ -42,16 +42,16 @@ class BookingController extends Controller
             'service_date.after' => 'Tanggal servis harus setelah hari ini.',
             'details.string' => 'Detail harus berupa teks.',
         ]);
-    
+
         // Cek jika ini adalah pesanan pertama yang perlu diubah menjadi confirmed
         $isFirstBooking = Booking::where('status', 'pending')->count() == 0;
         // dd( $isFirstBooking ? 'confirmed' : 'pending');
-    
+
         // Tentukan nomor antrian untuk pemesanan yang baru
         // Hitung jumlah pemesanan dengan status pending atau confirmed
         $queueNumber = Booking::whereIn('status', ['pending', 'confirmed', 'completed'])->count() + 1;
         // dd($queueNumber);
-    
+
         // Simpan pemesanan
         $booking = Booking::create([
             'user_id' => auth()->id(), // ID pengguna yang login
@@ -63,7 +63,7 @@ class BookingController extends Controller
             'status' => $isFirstBooking ? 'confirmed' : 'pending', // Jika pesanan pertama, status langsung confirmed
             'queue_number' => $queueNumber, // Set nomor antrian
         ]);
-    
+
         // Jika permintaan adalah AJAX
         if ($request->ajax()) {
             return response()->json([
@@ -72,12 +72,10 @@ class BookingController extends Controller
                 'data' => $booking, // Return data pemesanan untuk kebutuhan front-end
             ], 201);
         }
-    
+
         // Redirect ke halaman pemesanan jika tidak menggunakan AJAX
         return redirect()->route('pemesanan')->with('success', 'Pesanan telah ditambahkan!');
     }
-    
-
 
     // Show all bookings
     public function index()
@@ -99,18 +97,20 @@ class BookingController extends Controller
         $today = \Carbon\Carbon::today()->format('Y-m-d');
         $lastConfirmedBooking = $confirmedBookings->where('status', 'confirmed')->last();
 
-        // Pastikan service_date adalah objek Carbon
-        $lastConfirmedBookingDate = \Carbon\Carbon::parse($lastConfirmedBooking->service_date);
+        if ($lastConfirmedBooking) {
+            // Pastikan service_date adalah objek Carbon
+            $lastConfirmedBookingDate = \Carbon\Carbon::parse($lastConfirmedBooking->service_date);
 
-        // Sekarang Anda dapat memanggil format() pada objek Carbon
-        if ($lastConfirmedBooking && $lastConfirmedBookingDate->format('Y-m-d') !== $today) {
-            // Reset nomor antrian
-            $confirmedBookings->each(function ($booking, $index) use ($today) {
-                if (!$booking->queue_number || \Carbon\Carbon::parse($booking->service_date)->format('Y-m-d') !== $today) {
-                    $booking->queue_number = $index + 1;
-                    $booking->save();
-                }
-            });
+            // Bandingkan tanggal
+            if ($lastConfirmedBookingDate->format('Y-m-d') !== $today) {
+                // Reset nomor antrian
+                $confirmedBookings->each(function ($booking, $index) use ($today) {
+                    if (!$booking->queue_number || \Carbon\Carbon::parse($booking->service_date)->format('Y-m-d') !== $today) {
+                        $booking->queue_number = $index + 1;
+                        $booking->save();
+                    }
+                });
+            }
         }
 
         // Cari antrean yang sedang berlangsung
@@ -118,7 +118,6 @@ class BookingController extends Controller
 
         return view('pemesanan', compact('userBookings', 'confirmedBookings', 'currentQueue'));
     }
-
 
     public function bookingHistory()
     {
