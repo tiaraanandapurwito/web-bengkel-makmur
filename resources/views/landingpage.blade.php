@@ -158,36 +158,137 @@
             background-color: var(--light-blue);
         }
 
-        /* logo media-partner section start */
-        @keyframes slide {
-            from {
-                transform: translateX(0);
-            }
+        @keyframes smoothSlideForward {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
-            to {
-                transform: translateX(-100%);
-            }
-        }
+@keyframes smoothSlideBackward {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 
-        .logos {
-            overflow: hidden;
-            padding: 60px 0;
-            /* background: white; */
-            white-space: nowrap;
-            position: relative;
-        }
+.media-partner-section {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+    padding-top: 6rem;
+    text-align: center;
+    background: white;
+}
 
-        .logos-slide {
-            display: inline-block;
-            animation: 10s slide infinite linear;
-        }
+.media-partner-section h2 {
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
 
-        .logos-slide img {
-            height: 50px;
-            margin: 0 50px;
-        }
+.partner-logos {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
 
-        /* logo media-partner section end */
+.partner-logo-track {
+    display: flex;
+    align-items: center;
+    animation:
+        smoothSlideForward 10s linear forwards,
+        smoothSlideBackward 10s linear 10s reverse forwards;
+    animation-iteration-count: infinite;
+    width: 200%;
+}
+
+.partner-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    margin: 0 30px;
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.partner-logo img {
+    max-width: 350px;
+    max-height: 100px;
+    object-fit: contain;
+    filter: grayscale(20%) brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+.partner-logo img:hover {
+    filter: grayscale(0%) brightness(1.3);
+}
+
+/* Smooth Transition Between Animations */
+.partner-logo-track::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,0) 5%,
+        rgba(255,255,255,0) 95%,
+        rgba(255,255,255,1) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .partner-logo {
+        width: 150px;
+        margin: 0 20px;
+    }
+
+    .partner-logo img {
+        max-width: 120px;
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .partner-logo {
+        width: 120px;
+        margin: 0 15px;
+    }
+
+    .partner-logo img {
+        max-width: 90px;
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .partner-logo {
+        width: 100px;
+        margin: 0 10px;
+    }
+
+    .partner-logo img {
+        max-width: 80px;
+        max-height: 40px;
+    }
+}
 
         .footer {
             background-color: var(--primary-blue);
@@ -333,31 +434,66 @@
         </div>
     </section>
 
-    <!--media partner section start-->
-    <div class="container-fluid pt-5">
-        <div class="container text-center" data-aos="fade-right">
-            <h5 class="display-3" id="media-partner">Our Partner</h5>
-            <!--logo media partner-->
-            <div class="logos">
-                <div class="logos-slide">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                </div>
+    <!--Media Partners Section Start-->
+    <section class="media-partner-section">
+        <div class="container-fluid">
+            <div class="text-center mb-5">
+                <h2 class="display-6 mb-4">Our Trusted Partners</h2>
+            </div>
 
-                <div class="logos-slide">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
-                    <img src="{{ asset('assets/img/yamaha.png') }}" width="200" height="160" alt="Toyota">
+            <div class="partner-logos">
+                <div class="partner-logo-track">
+                    <!-- First Set of Logos -->
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/yamaha.jfif') }}" alt="Yamaha">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/toyota.jpeg') }}" alt="Toyota">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/Logo-SMK-Telkom-01.png') }}" alt="SMK TELKOM">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/fuso.png') }}" alt="Fuso">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/honda.png') }}" alt="Honda">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/repsol.png') }}" alt="Repsol">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/suzuki.png') }}" alt="Suzuki">
+                    </div>
+
+
+                    <!-- Repeated Logos for Seamless Infinite Scroll -->
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/yamaha.jfif') }}" alt="Yamaha">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/toyota.jpeg') }}" alt="Toyota">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/Logo-SMK-Telkom-01.png') }}" alt="SMK TELKOM">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/fuso.png') }}" alt="Fuso">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/honda.png') }}" alt="Honda">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/repsol.png') }}" alt="Repsol">
+                    </div>
+                    <div class="partner-logo">
+                        <img src="{{ asset('assets/img/suzuki.png') }}" alt="Suzuki">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--media partner section end-->
+    </section>
+    <!--Media Partners Section End-->
 
     <!-- Footer -->
     <footer id="kontak" class="footer py-5">

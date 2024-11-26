@@ -1,84 +1,90 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container my-5">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card booking-card shadow-lg border-0 rounded-lg">
-                <div class="card-header bg-gradient text-white py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-tools fa-2x me-3"></i>
-                            <h3 class="card-title h4 mb-0" style="color: black">Pesan Servis Baru</h3>
+        <div class="col-lg-9 col-xl-8">
+            <div class="card booking-card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-header bg-primary text-white p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <i class="fas fa-tools fa-3x text-white-50"></i>
                         </div>
-                        <a href="{{ route('pemesanan') }}" class="btn btn-light btn-sm">
-                            <i class="fas fa-list-alt me-1"></i>
-                            Lihat Daftar Pemesanan
-                        </a>
+                        <div>
+                            <h2 class="h4 mb-1 text-white">Pesan Servis Baru</h2>
+                            <p class="text-white-75 mb-0">Isi detail layanan servis kendaraan Anda</p>
+                        </div>
+                        <div class="ms-auto">
+                            <a href="{{ route('pemesanan') }}" class="btn btn-outline-light btn-sm">
+                                <i class="fas fa-list-alt me-2"></i>Daftar Pemesanan
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="card-body p-4">
-                    <form id="bookingForm" action="{{ route('user.booking.store') }}" method="POST"
-                        class="booking-form">
+                <div class="card-body p-5 bg-light">
+                    <form id="bookingForm" action="{{ route('user.booking.store') }}" method="POST" class="booking-form">
                         @csrf
-                        <div class="mb-4">
-                            <label for="vehicle_type" class="form-label fw-bold">
-                                <i class="fas fa-car me-2 text-primary"></i>
-                                Jenis Kendaraan
-                            </label>
-                            <select name="vehicle_type" class="form-select form-select-lg shadow-sm" id="vehicle_type"
-                                required>
-                                <option value="">Pilih Jenis Kendaraan</option>
-                                <option value="Mobil">Mobil</option>
-                                <option value="Motor">Motor</option>
-                                <option value="Truk">Truk</option>
-                            </select>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select name="vehicle_type" class="form-select" id="vehicle_type" required>
+                                        <option value="">Pilih Jenis Kendaraan</option>
+                                        <option value="Mobil">Mobil</option>
+                                        <option value="Motor">Motor</option>
+                                        <option value="Truk">Truk</option>
+                                    </select>
+                                    <label for="vehicle_type">
+                                        <i class="fas fa-car me-2 text-primary"></i>Jenis Kendaraan
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3" id="service_div">
+                                    <select name="service_id" id="service_id" class="form-select" required>
+                                        <option value="">Pilih Layanan</option>
+                                    </select>
+                                    <label for="service_id">
+                                        <i class="fas fa-cogs me-2 text-primary"></i>Pilih Layanan
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="service_price" id="service_price"
+                                           class="form-control" readonly>
+                                    <label for="service_price">
+                                        <i class="fas fa-tag me-2 text-primary"></i>Harga Layanan
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="datetime-local" name="service_date"
+                                           class="form-control" id="service_date"
+                                           required min="">
+                                    <label for="service_date">
+                                        <i class="fas fa-calendar-alt me-2 text-primary"></i>Tanggal Servis
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <textarea name="details" class="form-control" id="details"
+                                              placeholder="Jelaskan keluhan atau permintaan khusus"
+                                              style="height: 120px"></textarea>
+                                    <label for="details">
+                                        <i class="fas fa-clipboard-list me-2 text-primary"></i>Detail Servis (Opsional)
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Dropdown Layanan -->
-                        <div class="mb-4" id="service_div">
-                            <label for="service_id" class="form-label fw-bold">
-                                <i class="fas fa-cogs me-2 text-primary"></i>
-                                Pilih Layanan
-                            </label>
-                            <select name="service_id" id="service_id" class="form-select form-select-lg shadow-sm"
-                                required>
-                                <option value="">Pilih Layanan</option>
-                            </select>
-                        </div>
-
-                        <!-- Menampilkan Harga Layanan -->
-                        <div class="mb-4" id="service_price_div">
-                            <label for="service_price" class="form-label fw-bold">
-                                <i class="fas fa-tag me-2 text-primary"></i>
-                                Harga Layanan
-                            </label>
-                            <input type="text" name="service_price" id="service_price"
-                                class="form-control form-control-lg shadow-sm" readonly>
-                        </div>
-                        <div class="mb-4">
-                            <label for="service_date" class="form-label fw-bold">
-                                <i class="fas fa-calendar-alt me-2 text-primary"></i>
-                                Tanggal Servis
-                            </label>
-                            <input type="datetime-local" name="service_date"
-                                class="form-control form-control-lg shadow-sm"
-                                id="service_date"
-                                required
-                                min="">
-                        </div>
-                        <div class="mb-4">
-                            <label for="details" class="form-label fw-bold">
-                                <i class="fas fa-clipboard-list me-2 text-primary"></i>
-                                Detail Servis (Opsional)
-                            </label>
-                            <textarea name="details" class="form-control form-control-lg shadow-sm" id="details" rows="4"
-                                placeholder="Jelaskan keluhan atau permintaan khusus Anda"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-lg w-100 submit-btn">
-                            <i class="fas fa-calendar-plus me-2"></i>
-                            Buat Pemesanan
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3 shadow">
+                            <i class="fas fa-calendar-plus me-2"></i>Buat Pemesanan
                         </button>
                     </form>
                 </div>
@@ -86,6 +92,26 @@
         </div>
     </div>
 </div>
+
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #3494e6, #2948ff);
+    }
+
+    .bg-overlay {
+        background: linear-gradient(135deg, rgba(52, 148, 230, 0.1), rgba(41, 72, 255, 0.1));
+        z-index: -1;
+    }
+
+    .hover-elevate {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-elevate:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(41, 72, 255, 0.25) !important;
+    }
+</style>
 @endsection
 
 @section('scripts')
