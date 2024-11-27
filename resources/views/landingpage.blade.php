@@ -434,7 +434,7 @@
         </div>
     </section>
 
-    <!--Media Partners Section Start-->
+    <!-- Media Partners Section Start -->
     <section class="media-partner-section">
         <div class="container-fluid">
             <div class="text-center mb-5">
@@ -443,7 +443,7 @@
 
             <div class="partner-logos">
                 <div class="partner-logo-track">
-                    <!-- First Set of Logos -->
+                    <!-- Logos here, for example: -->
                     <div class="partner-logo">
                         <img src="{{ asset('assets/img/yamaha.jfif') }}" alt="Yamaha">
                     </div>
@@ -466,8 +466,7 @@
                         <img src="{{ asset('assets/img/suzuki.png') }}" alt="Suzuki">
                     </div>
 
-
-                    <!-- Repeated Logos for Seamless Infinite Scroll -->
+                    <!-- Repeated logos for smooth scroll loop -->
                     <div class="partner-logo">
                         <img src="{{ asset('assets/img/yamaha.jfif') }}" alt="Yamaha">
                     </div>
@@ -493,7 +492,7 @@
             </div>
         </div>
     </section>
-    <!--Media Partners Section End-->
+    <!-- Media Partners Section End -->
 
     <!-- Footer -->
     <footer id="kontak" class="footer py-5">
