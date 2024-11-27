@@ -43,14 +43,11 @@ class BookingController extends Controller
             'details.string' => 'Detail harus berupa teks.',
         ]);
 
-        // Cek jika ini adalah pesanan pertama yang perlu diubah menjadi confirmed
-        $isFirstBooking = Booking::where('status', 'pending')->count() == 0;
-        // dd( $isFirstBooking ? 'confirmed' : 'pending');
+        // Cek jika ada pesanan dengan status "confirmed"
+        $isFirstBooking = Booking::where('status', 'confirmed')->count() == 0;
 
         // Tentukan nomor antrian untuk pemesanan yang baru
-        // Hitung jumlah pemesanan dengan status pending atau confirmed
         $queueNumber = Booking::whereIn('status', ['pending', 'confirmed', 'completed'])->count() + 1;
-        // dd($queueNumber);
 
         // Simpan pemesanan
         $booking = Booking::create([
@@ -89,7 +86,8 @@ class BookingController extends Controller
             ->get();
 
         // Ambil semua pemesanan yang sudah dikonfirmasi untuk antrean global
-        $confirmedBookings = Booking::where('status', '!=', 'completed')
+        $confirmedBookings = Booking::with('user') // Tambahkan relasi user
+            ->where('status', '!=', 'completed')
             ->orderBy('service_date', 'asc') // Urutkan berdasarkan tanggal layanan
             ->get();
 
@@ -116,8 +114,14 @@ class BookingController extends Controller
         // Cari antrean yang sedang berlangsung
         $currentQueue = $confirmedBookings->firstWhere('status', 'confirmed');
 
+        // Tambahkan nama pemilik ke antrean aktif (jika ada)
+        if ($currentQueue && $currentQueue->user) {
+            $currentQueue->owner_name = $currentQueue->user->name; // Ambil nama pemilik dari relasi
+        }
+
         return view('pemesanan', compact('userBookings', 'confirmedBookings', 'currentQueue'));
     }
+
 
     public function bookingHistory()
     {
