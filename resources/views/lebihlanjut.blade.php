@@ -50,7 +50,7 @@
     <header class="gradient-header text-white py-12 text-center">
         <div class="container mx-auto px-4">
             <h1 class="text-4xl font-bold mb-4">Bengkel Makmur</h1>
-            <p class="text-xl opacity-90">Melayani dengan Keahlian dan Kepercayaan</p>
+            <p class="text-xl opacity-90">Ahli dalam perawatan kendaraan, siap membantu menjaga performa kendaraan Anda</p>
         </div>
     </header>
 
@@ -111,7 +111,7 @@
                 <div>
                     <p class="text-lg mb-4">Ikuti langkah berikut untuk memesan servis kendaraan Anda:</p>
                     <ol class="list-decimal list-inside space-y-2 text-lg">
-                        <li>Kunjungi website resmi kami di <a href="{{ route('login') }}" target="_blank" class="text-blue-600 hover:underline">www.bengkeltelkom.co.id</a>.</li>
+                        <li>Kunjungi website resmi kami di <a href="{{ route('login') }}" target="_blank" class="text-blue-600 hover:underline">www.bengkelmakmur.co.id</a>.</li>
                         <li>Pilih menu <strong>Booking Servis</strong>.</li>
                         <li>Isi formulir pemesanan dengan lengkap.</li>
                         <li>Pilih jadwal yang tersedia.</li>

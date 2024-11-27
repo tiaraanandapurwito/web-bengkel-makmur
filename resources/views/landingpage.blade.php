@@ -80,7 +80,7 @@
         .hero {
             background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
             color: white;
-            padding: 150px 0;
+            padding: 160px 0;
             position: relative;
             overflow: hidden;
         }
@@ -158,155 +158,327 @@
             background-color: var(--light-blue);
         }
 
-        @keyframes smoothSlideForward {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes smoothSlideBackward {
-            0% {
-                transform: translateX(-50%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .media-partner-section {
-            position: relative;
-            overflow: hidden;
-            padding: 4rem 0;
-            padding-top: 6rem;
-            text-align: center;
-            background: white;
-        }
-
-        .media-partner-section h2 {
-            font-size: 2.5rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            color: black;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .partner-logos {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .partner-logo-track {
-            display: flex;
-            align-items: center;
-            animation:
-                smoothSlideForward 10s linear forwards,
-                smoothSlideBackward 10s linear 10s reverse forwards;
-            animation-iteration-count: infinite;
-            width: 200%;
-        }
-
-        .partner-logo {
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 200px;
-            height: 100px;
-            margin: 0 30px;
-            opacity: 1;
-            transition: all 0.5s ease;
-        }
-
-        .partner-logo img {
-            max-width: 350px;
-            max-height: 100px;
-            object-fit: contain;
-            filter: grayscale(20%) brightness(1.2);
-            transition: all 0.3s ease;
-        }
-
-        .partner-logo img:hover {
-            filter: grayscale(0%) brightness(1.3);
-        }
-
-        /* Smooth Transition Between Animations */
-        .partner-logo-track::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right,
-                    rgba(255, 255, 255, 1) 0%,
-                    rgba(255, 255, 255, 0) 5%,
-                    rgba(255, 255, 255, 0) 95%,
-                    rgba(255, 255, 255, 1) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 1024px) {
-            .partner-logo {
-                width: 150px;
-                margin: 0 20px;
-            }
-
-            .partner-logo img {
-                max-width: 120px;
-                max-height: 60px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .partner-logo {
-                width: 120px;
-                margin: 0 15px;
-            }
-
-            .partner-logo img {
-                max-width: 90px;
-                max-height: 50px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .partner-logo {
-                width: 100px;
-                margin: 0 10px;
-            }
-
-            .partner-logo img {
-                max-width: 80px;
-                max-height: 40px;
-            }
-        }
-
         .footer {
             background-color: var(--primary-blue);
             color: white;
             padding: 60px 0;
         }
 
-        @media (max-width: 768px) {
+        /* Mobile Responsiveness Stylesheet */
+
+        /* CSS Variables for Mobile Scaling */
+        :root {
+            --mobile-font-scale: 0.9;
+            --mobile-spacing-scale: 0.8;
+        }
+
+        /* Global Mobile Media Query */
+        @media (max-width: 480px) {
+
+            /* Typography and Body Adjustments */
+            body {
+                font-size: calc(14px * var(--mobile-font-scale));
+                line-height: 1.5;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: auto !important;
+            }
+
+            /* Navbar Mobile Styling */
+            .navbar {
+                background-color: rgba(26, 75, 141, 0.98) !important;
+                padding: 10px 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-brand {
+                font-size: 1.3rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar-nav {
+                margin-top: 15px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .navbar-nav .nav-item {
+                margin-bottom: 12px;
+            }
+
+            .ms-3 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                margin-top: 15px !important;
+            }
+
+            .ms-3 .btn {
+                width: 80%;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Hero Section Mobile Design */
             .hero {
-                padding: 100px 0;
+                position: relative;
+                padding: 200px 15px 80px !important;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .hero::before {
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem !important;
+                line-height: 1.2;
+                margin-bottom: 15px;
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
             }
 
             .hero-subtitle {
+                font-size: 1rem !important;
+                opacity: 0.9;
+                margin-bottom: 25px;
+            }
+
+            .hero .btn {
+                padding: 12px 20px;
                 font-size: 1rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Services Section Mobile Layout */
+            #layanan {
+                padding: 40px 15px !important;
+            }
+
+            #layanan .row {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .service-card {
+                transform: scale(0.95);
+                transition: all 0.3s ease;
+            }
+
+            .service-card:hover {
+                transform: scale(1) translateY(-10px);
+            }
+
+            .service-card .card-icon {
+                width: 65px;
+                height: 65px;
+                margin-bottom: 15px;
+            }
+
+            .service-card h5 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+
+            .service-card p {
+                font-size: 0.9rem;
+            }
+
+            /* About Section Mobile Optimization */
+            #tentang {
+                padding: 50px 15px !important;
+            }
+
+            #tentang .row {
+                flex-direction: column-reverse;
+            }
+
+            #tentang h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                margin-top: 20px
+            }
+
+            #tentang .lead {
+                font-size: 1rem;
+            }
+
+            /* Footer Mobile Design */
+            .footer {
+                padding: 40px 15px !important;
+            }
+
+            .footer .row {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer h5 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .footer p,
+            .footer ul {
+                font-size: 0.95rem;
+            }
+
+            /* Performance and Accessibility Enhancements */
+            * {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Ultra Small Mobile Devices */
+        @media (max-width: 320px) {
+            .hero-title {
+                font-size: 1.8rem !important;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        /* Landscape Orientation Support */
+        @media screen and (max-width: 480px) and (orientation: landscape) {
+            .hero {
+                padding: 60px 15px !important;
+            }
+
+            #layanan,
+            #tentang {
+                padding: 30px 15px !important;
+            }
+        }
+
+        @media (max-width: 992px) {
+
+            /* Navbar Adjustments */
+            .navbar-nav {
+                margin-top: 15px;
+                text-align: center;
+            }
+
+            .navbar-nav .nav-item {
+                margin-bottom: 10px;
+            }
+
+            .ms-3 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 15px !important;
+            }
+
+            .ms-3 .btn {
+                margin-bottom: 10px;
+                width: 200px;
+            }
+
+            /* Hero Section Responsiveness */
+            .hero {
+                padding: 100px 0 80px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            /* Services Section */
+            #layanan .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            #layanan .col-md-3 {
+                flex: 0 0 auto;
+                width: 49%;
+                margin-bottom: 20px;
+            }
+
+            /* About Section */
+            #tentang .row {
+                flex-direction: column;
+            }
+
+            #tentang .col-lg-6 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            /* Footer Responsiveness */
+            .footer .row {
+                text-align: center;
+            }
+
+            .footer .col-md-4 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Ultra-Small Devices */
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            #layanan .col-md-3 {
+                width: 100%;
+            }
+
+            .service-card {
+                padding: 20px !important;
+            }
+        }
+
+        /* Tablet Devices */
+        @media (min-width: 768px) and (max-width: 992px) {
+            #layanan .col-md-3 {
+                width: 45%;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .navbar,
+            .footer {
+                display: none;
+            }
+
+            .hero {
+                padding: 20px 0;
+                background: none;
+                color: black;
             }
         }
     </style>
@@ -433,66 +605,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Media Partners Section Start -->
-    <section class="media-partner-section">
-        <div class="container-fluid">
-            <div class="text-center mb-5">
-                <h2 class="display-6 mb-4">Our Trusted Partners</h2>
-            </div>
-
-            <div class="partner-logos">
-                <div class="partner-logo-track">
-                    <!-- Logos here, for example: -->
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/yamaha.jfif') }}" alt="Yamaha">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/toyota.jpeg') }}" alt="Toyota">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/Logo-SMK-Telkom-01.png') }}" alt="SMK TELKOM">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/fuso.png') }}" alt="Fuso">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/honda.png') }}" alt="Honda">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/repsol.png') }}" alt="Repsol">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/suzuki.png') }}" alt="Suzuki">
-                    </div>
-
-                    <!-- Repeated logos for smooth scroll loop -->
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/yamaha.jfif') }}" alt="Yamaha">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/toyota.jpeg') }}" alt="Toyota">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/Logo-SMK-Telkom-01.png') }}" alt="SMK TELKOM">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/fuso.png') }}" alt="Fuso">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/honda.png') }}" alt="Honda">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/repsol.png') }}" alt="Repsol">
-                    </div>
-                    <div class="partner-logo">
-                        <img src="{{ asset('assets/img/suzuki.png') }}" alt="Suzuki">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Media Partners Section End -->
 
     <!-- Footer -->
     <footer id="kontak" class="footer py-5">
