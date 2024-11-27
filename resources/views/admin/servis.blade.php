@@ -109,6 +109,91 @@
             width: 100%;
         }
     }
+
+    @media (max-width: 576px) {
+    /* Adjusting padding and layout for mobile */
+    .service-management {
+        padding: 0.5rem;
+    }
+
+    /* Card Styling */
+    .card-custom {
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        background-color: white;
+    }
+
+    .card-header-custom {
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.75rem;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    /* Form Elements */
+    .form-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .form-control, .form-select {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .form-control:focus, .form-select:focus {
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    /* Buttons */
+    .btn-action {
+        font-size: 0.75rem;
+        gap: 0.3rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .btn-save {
+        font-size: 0.8rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .btn-action {
+        width: 100%;
+    }
+
+    /* Table Styling */
+    .table-responsive {
+        font-size: 0.8rem;
+    }
+
+    .table-hover thead th {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .table-hover tbody td {
+        font-size: 0.75rem;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    /* Empty State */
+    .alert {
+        font-size: 0.85rem;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    /* Icon Adjustments */
+    .fas {
+        font-size: 0.85rem;
+    }
+}
 </style>
 @endsection
 
