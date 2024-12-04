@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminBookingController extends Controller
 {
@@ -74,5 +75,13 @@ class AdminBookingController extends Controller
         $completedBookings = Booking::where('status', 'completed')->orderBy('completed_at', 'desc')->get();
 
         return view('admin.HistoryBooking', compact('completedBookings'));
+    }
+
+    public function exportPDF()
+    {
+        $completedBookings = Booking::where('status', 'completed')->get(); // Ganti sesuai kebutuhan
+        $pdf = Pdf::loadView('pdf.pdfadmin', compact('completedBookings'))
+            ->setPaper('a4', 'landscape');
+        return $pdf->download('history_pemesanan_servis.pdf');
     }
 }

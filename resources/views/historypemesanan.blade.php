@@ -131,6 +131,7 @@
                             <th>Tanggal Servis</th>
                             <th>Waktu Servis</th>
                             <th>Detail</th>
+                            <th>Cetak</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,6 +148,11 @@
                                 <td data-label="Waktu Servis">
                                     {{ \Carbon\Carbon::parse($booking->service_date)->format('H:i') }}</td>
                                 <td data-label="Detail">{{ $booking->details ?? '-' }}</td>
+                                <td data-label="Cetak">
+                                    <a href="{{ route('bookings.print', $booking->id) }}" class="btn btn-primary btn-sm" target="_blank">
+                                        Cetak Struk
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

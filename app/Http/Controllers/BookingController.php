@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookingController extends Controller
 {
@@ -153,5 +154,13 @@ class BookingController extends Controller
         }
 
         return $options;
+    }
+
+    public function print($id)
+    {
+        $booking = Booking::with('service')->findOrFail($id);
+
+        $pdf = Pdf::loadView('pdf.pdfuser', compact('booking'));
+        return $pdf->stream('struk_pemesanan.pdf');
     }
 }

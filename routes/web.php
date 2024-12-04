@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/bookings', [BookingController::class, 'store'])->name('user.booking.store');
     Route::get('/booking/history', [BookingController::class, 'bookingHistory'])->name('historypemesanan');
     Route::get('/get-services', [BookingController::class, 'getServices'])->name('services.get');
+    Route::get('/bookings/print/{id}', [BookingController::class, 'print'])->name('bookings.print');
 });
 
 // Admin Dashboard Route
@@ -43,6 +44,7 @@ Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('a
 Route::post('/admin/bookings/update-status', [AdminBookingController::class, 'updateStatus'])->name('bookings.update-status');
 Route::get('/admin/bookings/history', [AdminBookingController::class, 'history'])->name('admin.HistoryBooking');
 Route::get('/get-services-by-vehicle-type', [BookingController::class, 'getServicesByVehicleType'])->name('services.getByVehicleType');
+Route::get('/get-pdf-admin', [AdminBookingController::class, 'exportPDF'])->name('exportPDF.admin');
 
 // Menampilkan daftar layanan servis
 Route::get('/services', [ServiceController::class, 'index'])->name('admin.servis');
